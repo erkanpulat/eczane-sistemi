@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"               
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template/admin.xhtml">
+
+    <ui:define name="content">     
+        <h:form>
+          
+            <div class="form-group row">
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">BarkodNo</label>
+                <div class="col-sm-9">
+                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.barkodNo}" /> 
+                </div>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;" >İlaç Adı</label>
+                <div class="col-sm-9">
+                    <h:inputText style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{ilacBean.entity.ilacAdi}" />
+                </div>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Fiyat</label>
+                <div class="col-sm-9">
+                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.fiyat}" />
+                </div>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Adet</label>
+                <div class="col-sm-9">
+                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.adet}" />
+                </div>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretim Tarihi</label>
+               <div class="col-sm-9">
+                   <h:inputText a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.uretimTarihi}" />
+                </div>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Son Kullanma Tarihi</label>
+                <div class="col-sm-9">
+                    <h:inputText a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.sonKullanmaTarihi}" />
+                </div>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretici Firma</label>
+                <div class="col-sm-9">
+                    <h:selectOneMenu style="margin-top: 10px;" value="#{ilacBean.entity.firma}" >
+                        <f:selectItems class="form-control" value="#{firmaBean.firmaReadNo}" />
+                    </h:selectOneMenu>         
+                </div>
+                <br/>
+                <div class="col-sm-9">
+                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{ilacBean.create()}" value="Oluştur"/>
+                </div>
+              
+            </div>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+

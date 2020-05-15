@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/template/admin.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+        <h:form>
+            <br/>
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/ilac/create" value="İlaç Ekle" />
+            <br/>
+            <hr/>
+            <h:dataTable  class="table" value="#{ilacBean.read}" var="a">
+
+                <h:column >
+                    <f:facet name="header">BARKOD NO</f:facet>
+                        #{a.barkodNo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">İLAC ADI</f:facet>
+                        #{a.ilacAdi}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">FİYAT</f:facet>
+                        #{a.fiyat}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADET</f:facet>
+                        #{a.adet}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ÜRETİM TARİHİ</f:facet>
+                        #{a.uretimTarihi}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SONKULLANMA TARİHİ</f:facet>
+                        #{a.sonKullanmaTarihi}
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">ÜRETİCİ FİRMA</f:facet>
+                        #{ilacBean.ilacIsmiDondur(a.ureticiFirma)}
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">İŞLEMLER</f:facet>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{ilacBean.updateForm(a)}" value="Güncelle"/>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{ilacBean.delete(a)}" value="Sil"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>  
+</ui:composition>
+
+
