@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/template/admin.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <ui:define name="content">
+        <style>
+            .popup-panel-overlay{
+                background-color: rgba(0,0,0,0.5);
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+            }
+            .popup-panel{
+                margin: 100px;
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                border: 1px solid #DDD;
+            }
+        </style>
+        
+        
+
+        <h:form id="form">
+            <br/>
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/firma/create" value="Firma Oluştur" />
+            <br/>
+            <hr/>
+            <h:dataTable  class="table" value="#{firmaBean.read}" var="a">
+
+                <h:column >
+                    <f:facet name="header">Firma Id</f:facet>
+                        #{a.firmaId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Firma Adı</f:facet>
+                        #{a.firmaAdi}
+                </h:column>
+               
+                 <h:column>
+                    <f:facet name="header">ADRES NO</f:facet>
+                    <h:commandLink value="#{a.adresNo} (Detaylı Gör)" action="#{adreslerBean.show(a.adresNo)}"> 
+                        <f:ajax render="@form"/>
+                    </h:commandLink>            
+                    <h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{adreslerBean.showPopup}">
+                        <div class="popup-panel">
+                            #{adreslerBean.adresBilgisiGoster(adreslerBean.no)} <br/><br/>
+                            <h:commandButton styleClass="btn btn-info" value="Kapat" action="#{adreslerBean.hide()}">
+                                <f:ajax render="@form"/>
+                            </h:commandButton>
+                        </div>
+                    </h:panelGroup>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">TELEFON</f:facet>
+                        #{a.telefon}
+                </h:column>
+               
+                <h:column >
+                    <f:facet name="header">İŞLEMLER</f:facet>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{firmaBean.updateForm(a)}" value="Güncelle"/>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{firmaBean.delete(a)}" value="Sil"/>                   
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </ui:define>  
+</ui:composition>
