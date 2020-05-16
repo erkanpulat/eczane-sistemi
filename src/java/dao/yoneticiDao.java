@@ -69,6 +69,8 @@ public class yoneticiDao extends DbConnection{
                         rs.getLong(5), rs.getString(6),rs.getFloat(7),a);
                 aList.add(h);              
             }
+            st.close();
+            rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        
         }      

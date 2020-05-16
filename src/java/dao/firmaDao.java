@@ -84,6 +84,8 @@ public class firmaDao extends DbConnection {
                 firma a = new firma(rs.getLong(1), rs.getString(2), b, rs.getLong(4));
                 aList.add(a);
             }
+            st.close();
+            rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

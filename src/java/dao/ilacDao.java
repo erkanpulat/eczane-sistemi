@@ -85,6 +85,8 @@ public class ilacDao extends DbConnection{
                 ilac h=new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6),f);
                 aList.add(h);              
             }
+            st.close();
+            rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        
         }      

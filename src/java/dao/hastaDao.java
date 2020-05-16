@@ -69,6 +69,8 @@ public class hastaDao extends DbConnection{
                         rs.getLong(5), a);
                 aList.add(h);              
             }
+            st.close();
+            rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        
         }      
