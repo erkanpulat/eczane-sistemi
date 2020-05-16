@@ -5,23 +5,24 @@
  */
 package controller;
 
+import dao.yoneticiDao;
 
-import dao.yoneticiDao;
-import dao.yoneticiDao;
-import entity.yonetici;
 import entity.yonetici;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+
+import javax.inject.Named;
 
 /**
  *
  * @author user
  */
-@ManagedBean
+@Named
 @SessionScoped
+
 public class yoneticiBean implements Serializable {
+
     private yoneticiDao yDao;
     private yonetici entity;
 
@@ -71,5 +72,5 @@ public class yoneticiBean implements Serializable {
     public void setEntity(yonetici entity) {
         this.entity = entity;
     }
-  
+
 }

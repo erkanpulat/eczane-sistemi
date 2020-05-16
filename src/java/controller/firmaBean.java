@@ -9,14 +9,15 @@ import dao.firmaDao;
 import entity.firma;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+
+import javax.inject.Named;
 
 /**
  *
  * @author Hanifi
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class firmaBean implements Serializable {
      private firmaDao fDao;

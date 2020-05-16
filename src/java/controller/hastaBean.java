@@ -9,14 +9,15 @@ import dao.hastaDao;
 import entity.hasta;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+
+import javax.inject.Named;
 
 /**
  *
  * @author user
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class hastaBean implements Serializable {
      private hastaDao hDao;

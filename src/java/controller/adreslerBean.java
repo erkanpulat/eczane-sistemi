@@ -9,10 +9,11 @@ import dao.adreslerDao;
 import entity.adresler;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.SessionScoped;
 
-@ManagedBean
+import javax.inject.Named;
+
+@Named
 @SessionScoped
 
 public class adreslerBean implements Serializable{
