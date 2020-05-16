@@ -18,20 +18,19 @@ public class ilac {
     private int adet;
     private String uretimTarihi;
     private String sonKullanmaTarihi;
-    private long ureticiFirma;
-    private String firma;
+    private firma firma;
 
     public ilac() {
     }
 
-    public ilac(long barkodNo, String ilacAdi, float fiyat, int adet, String uretimTarihi, String sonKullanmaTarihi, long ureticiFirma) {
+    public ilac(long barkodNo, String ilacAdi, float fiyat, int adet, String uretimTarihi, String sonKullanmaTarihi, firma firma) {
         this.barkodNo = barkodNo;
         this.ilacAdi = ilacAdi;
         this.fiyat = fiyat;
         this.adet = adet;
         this.uretimTarihi = uretimTarihi;
         this.sonKullanmaTarihi = sonKullanmaTarihi;
-        this.ureticiFirma = ureticiFirma;
+        this.firma = firma;
     }
 
     public long getBarkodNo() {
@@ -82,25 +81,17 @@ public class ilac {
         this.sonKullanmaTarihi = sonKullanmaTarihi;
     }
 
-    public String getFirma() {
+    public firma getFirma() {
         return firma;
     }
-    
-    
-    public void setFirma(String firma) {
-        ilacDao iDao=new ilacDao();
-       this.ureticiFirma=iDao.ilacFirma(firma);
-       this.firma = firma;
+
+    public void setFirma(firma firma) {
+        this.firma = firma;
     }
 
+  
     
-    public long getUreticiFirma() {
-        return ureticiFirma;
-    }
+    
 
-    public void setUreticiFirma(long ureticiFirma) {
-        this.ureticiFirma = ureticiFirma;
-    }
-    
     
 }

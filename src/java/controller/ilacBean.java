@@ -6,13 +6,12 @@
 package controller;
 
 import dao.ilacDao;
+import entity.firma;
 import entity.ilac;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-
 import javax.inject.Named;
-
 /**
  *
  * @author user
@@ -20,8 +19,11 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class ilacBean implements Serializable {
-     private ilacDao iDao;
-     private ilac entity;
+
+    private ilacDao iDao;
+    private ilac entity;
+
+   
 
     public String create() {
         this.getiDao().create(entity);
@@ -34,7 +36,7 @@ public class ilacBean implements Serializable {
         return "/ilac/update";
     }
 
-   public String update() {
+    public String update() {
         this.getiDao().update(entity);
         this.entity = new ilac();
         return "/ilac/list";
@@ -43,10 +45,8 @@ public class ilacBean implements Serializable {
     public void delete(ilac c) {
         this.getiDao().delete(c);
     }
-    
-    public String ilacIsmiDondur(long a){    
-        return this.getiDao().ilacFirmaId(a);
-    }
+
+   
 
     public List<ilac> getRead() {
         return this.getiDao().read();
@@ -73,5 +73,5 @@ public class ilacBean implements Serializable {
     public void setEntity(ilac entity) {
         this.entity = entity;
     }
-  
+
 }

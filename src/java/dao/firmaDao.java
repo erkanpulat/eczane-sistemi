@@ -26,6 +26,21 @@ public class firmaDao extends DbConnection{
             System.out.println(ex.getMessage());
         }
     }
+       public firma getById(long id) {
+        firma f=null;
+        
+        String query = "select * from firma where firmaId="+id;
+        try {           
+            Statement st = this.connect().createStatement();
+            ResultSet rs= st.executeQuery(query);
+            rs.next();
+            f=new firma(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getLong(4));
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    return f;
+    }
 
     public void delete(firma a) {
         try {

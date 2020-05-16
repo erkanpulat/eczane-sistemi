@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entity.firma;
 import entity.ilac;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,11 +20,26 @@ import util.DbConnection;
  */
 public class ilacDao extends DbConnection{
     
+    private firmaDao fDao;
+
+    public firmaDao getfDao() {
+        if(fDao==null){
+            this.fDao= new firmaDao();
+        }
+        return fDao;
+    }
+
+    public void setfDao(firmaDao fDao) {
+        this.fDao = fDao;
+    }
+
+ 
+    
     
     public void create(ilac a) {
         
         String query = "insert into ilac VALUES("+a.getBarkodNo()+",'"+a.getIlacAdi()+"',"+a.getFiyat()+","+
-                a.getAdet()+",'"+a.getUretimTarihi()+"','"+a.getSonKullanmaTarihi()+"',"+a.getUreticiFirma()+")";
+                a.getAdet()+",'"+a.getUretimTarihi()+"','"+a.getSonKullanmaTarihi()+"',"+a.getFirma().getFirmaId()+")";
         try {           
             Statement st = this.connect().createStatement();
             st.executeUpdate(query);
@@ -43,7 +59,7 @@ public class ilacDao extends DbConnection{
     
      public void update(ilac a){
          String query="update ilac set barkodno="+a.getBarkodNo()+", ilacadi='"+a.getIlacAdi()+
-                 "',fiyat="+a.getFiyat()+",adet="+a.getAdet()+",uretimtarihi='"+a.getUretimTarihi()+"',sonkullanmatarihi='"+a.getSonKullanmaTarihi()+"',ureticifirma='"+a.getUreticiFirma()+"' where barkodno="+a.getBarkodNo();
+                 "',fiyat="+a.getFiyat()+",adet="+a.getAdet()+",uretimtarihi='"+a.getUretimTarihi()+"',sonkullanmatarihi='"+a.getSonKullanmaTarihi()+"',ureticifirma='"+a.getFirma().getFirmaId()+"' where barkodno="+a.getBarkodNo();
         try {
             Statement st=this.connect().createStatement();
             st.executeUpdate(query);
@@ -64,19 +80,7 @@ public class ilacDao extends DbConnection{
         }     
         return firmaid;
      }
-      public String ilacFirmaId(long a){
-         String firmaadi="";
-         try {
-            Statement st=this.connect().createStatement();
-            ResultSet rs= st.executeQuery("select firmaadi from firma where firmaid="+a);
-            while(rs.next()){
-                firmaadi=rs.getString(1);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());        
-        }     
-        return firmaadi;
-     }
+  
       
      public List<ilac> read(){
         List<ilac> aList = new ArrayList<>();
@@ -85,7 +89,8 @@ public class ilacDao extends DbConnection{
             Statement st=this.connect().createStatement();
             ResultSet rs= st.executeQuery("select *from ilac ");
             while(rs.next()){
-                ilac h=new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6),rs.getLong(7));
+                firma f=this.getfDao().getById(rs.getLong(7));
+                ilac h=new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6),f);
                 aList.add(h);              
             }
         } catch (SQLException ex) {
