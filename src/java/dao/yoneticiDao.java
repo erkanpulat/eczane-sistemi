@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dao;
 
+import entity.adresler;
 import entity.yonetici;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,15 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 import util.DbConnection;
 
-/**
- *
- * @author user
- */
 public class yoneticiDao extends DbConnection{
+    
+    adreslerDao aDao;
+
+    public adreslerDao getaDao() {
+        if(aDao==null){
+            aDao=new adreslerDao();
+        }
+        return aDao;
+    }
+
+    public void setaDao(adreslerDao aDao) {
+        this.aDao = aDao;
+    }
     
     public void create(yonetici a) {      
         String query = "insert into yonetici(tcNo,adSoyad,dogumTarihi,cinsiyet,telefon,departman,maas,adresNo) VALUES("+a.getTcNo()+",'"+a.getAdSoyad()+"','"+a.getDogumTarihi()+"','"+
-                a.getCinsiyet()+"',"+a.getTelefon()+",'"+a.getDepartman()+"',"+a.getMaas()+","+a.getAdresNo()+")";
+                a.getCinsiyet()+"',"+a.getTelefon()+",'"+a.getDepartman()+"',"+a.getMaas()+","+a.getAdresEntity().getAdresNo()+")";
         String query2="insert into yoneticigiris(tcno,sifre) VALUES("+a.getTcNo()+",'"+a.getSifre()+"')";
         try {           
             Statement st = this.connect().createStatement();
@@ -42,7 +48,7 @@ public class yoneticiDao extends DbConnection{
         }
     }
      public void update(yonetici a){
-         String query="update yonetici set telefon="+a.getTelefon()+", departman='"+a.getDepartman()+"',maas="+a.getMaas()+", adresNo="+a.getAdresNo()+
+         String query="update yonetici set telefon="+a.getTelefon()+", departman='"+a.getDepartman()+"',maas="+a.getMaas()+", adresNo="+a.getAdresEntity().getAdresNo()+
                  " where tcNo="+a.getTcNo();
         try {
             Statement st=this.connect().createStatement();
@@ -58,8 +64,9 @@ public class yoneticiDao extends DbConnection{
             Statement st=this.connect().createStatement();
             ResultSet rs= st.executeQuery("select *from yonetici order by adresNo asc");
             while(rs.next()){
+                adresler a=this.getaDao().getById(rs.getInt(8));
                 yonetici h=new yonetici(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), 
-                        rs.getLong(5), rs.getString(6),rs.getFloat(7),rs.getInt(8));
+                        rs.getLong(5), rs.getString(6),rs.getFloat(7),a);
                 aList.add(h);              
             }
         } catch (SQLException ex) {

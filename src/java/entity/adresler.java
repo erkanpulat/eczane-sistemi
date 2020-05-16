@@ -1,37 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entity;
 
-/**
- *
- * @author user
- */
 public class adresler {
 
     private int adresNo;
-    private String sehir;
-    private String ilce;
-    private String mahalle;
-    private String sokakCadde;
-    private int binaNo;
-    private int kapiNo;
-
+    private String adres;
+  
     public adresler() {
     }
 
-    public adresler(int adresNo, String sehir, String ilce, String mahalle, String sokakCadde, int binaNo, int kapiNo) {
-        this.adresNo = adresNo;
-        this.sehir = sehir;
-        this.ilce = ilce;
-        this.mahalle = mahalle;
-        this.sokakCadde = sokakCadde;
-        this.binaNo = binaNo;
-        this.kapiNo = kapiNo;
+    public adresler(int adresNo, String adres) {
+        this.adresNo=adresNo;
+        this.adres=adres;
     }
-
+    
     public int getAdresNo() {
         return adresNo;
     }
@@ -40,52 +22,44 @@ public class adresler {
         this.adresNo = adresNo;
     }
 
-    public String getSehir() {
-        return sehir;
+    public String getAdres() {
+        return adres;
     }
 
-    public void setSehir(String sehir) {
-        this.sehir = sehir;
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }  
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.adresNo;
+        return hash;
     }
 
-    public String getIlce() {
-        return ilce;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final adresler other = (adresler) obj;
+        if (this.adresNo != other.adresNo) {
+            return false;
+        }
+        return true;
     }
 
-    public void setIlce(String ilce) {
-        this.ilce = ilce;
-    }
+   
 
-    public String getMahalle() {
-        return mahalle;
+    @Override
+    public String toString() {
+        return "adresler{" + "adresNo=" + adresNo + ", adres=" + adres + '}';
     }
-
-    public void setMahalle(String mahalle) {
-        this.mahalle = mahalle;
-    }
-
-    public String getSokakCadde() {
-        return sokakCadde;
-    }
-
-    public void setSokakCadde(String sokakCadde) {
-        this.sokakCadde = sokakCadde;
-    }
-
-    public int getBinaNo() {
-        return binaNo;
-    }
-
-    public void setBinaNo( int binaNo) {
-        this.binaNo = binaNo;
-    }
-
-    public int getKapiNo() {
-        return kapiNo;
-    }
-
-    public void setKapiNo(int kapiNo) {
-        this.kapiNo = kapiNo;
-    }
-
+ 
 }

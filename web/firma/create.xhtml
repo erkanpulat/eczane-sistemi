@@ -14,10 +14,10 @@
                 <div class="col-sm-9">
                     <h:inputText style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{firmaBean.entity.firmaAdi}" />
                 </div>
-                <label class="col-sm-2 col-form-label" style="margin:10px 0px 15px 15px;">Adres No</label>
+                <label class="col-sm-2 col-form-label" style="margin:10px 0px 15px 15px;">Adres</label>
                 <div class="col-sm-9">
-                    <h:selectOneMenu style="margin-top: 10px;" value="#{firmaBean.entity.adresNo}" >
-                        <f:selectItems class="form-control" value="#{adreslerBean.readNo}" />
+                    <h:selectOneMenu style="margin-top: 10px;" value="#{firmaBean.entity.adresEntity}" converter="adresConverter" >
+                        <f:selectItems class="form-control" value="#{adreslerBean.read}" var="a" itemLabel="#{a.adres}" itemValue="#{a}" />
                     </h:selectOneMenu>         
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Telefon No</label>

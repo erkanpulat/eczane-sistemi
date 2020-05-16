@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import dao.firmaDao;
@@ -13,10 +9,6 @@ import javax.enterprise.context.SessionScoped;
 
 import javax.inject.Named;
 
-/**
- *
- * @author Hanifi
- */
 @Named
 @SessionScoped
 public class firmaBean implements Serializable {
@@ -68,11 +60,5 @@ public class firmaBean implements Serializable {
 
     public void setEntity(firma entity) {
         this.entity = entity;
-    }
-  
-
-
-  public List<String> getFirmaReadNo() {
-        return this.getfDao().firmanoRead();
     }
 }

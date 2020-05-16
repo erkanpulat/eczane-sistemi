@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dao;
 
+import entity.adresler;
 import entity.hasta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,16 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 import util.DbConnection;
 
-/**
- *
- * @author user
- */
+
 public class hastaDao extends DbConnection{
+    adreslerDao aDao;
+
+    public adreslerDao getaDao() {
+        if(aDao==null){
+            aDao=new adreslerDao();
+        }
+        return aDao;
+    }
+
+    public void setaDao(adreslerDao aDao) {
+        this.aDao = aDao;
+    }
+    
     
     public void create(hasta a) {
         
-        String query = "insert into hasta(tcno,adsoyad,dogumTarihi,cinsiyet,telefon,adresno) VALUES("+a.getTcNo()+",'"+a.getAdSoyad()+"','"+a.getDogumTarihi()+"','"+
-                a.getCinsiyet()+"',"+a.getTelefon()+","+a.getAdresNo()+")";
+        String query = "insert into hasta"
+                + " VALUES("+a.getTcNo()+",'"+a.getAdSoyad()+"','"+a.getDogumTarihi()+"','"+
+                a.getCinsiyet()+"',"+a.getTelefon()+","+a.getAdresEntity().getAdresNo()+")";
         try {           
             Statement st = this.connect().createStatement();
             st.executeUpdate(query);
@@ -40,7 +48,7 @@ public class hastaDao extends DbConnection{
         }
     }
      public void update(hasta a){
-         String query="update hasta set telefon="+a.getTelefon()+", adresNo="+a.getAdresNo()+
+         String query="update hasta set telefon="+a.getTelefon()+", adresNo="+a.getAdresEntity().getAdresNo()+
                  " where tcno="+a.getTcNo();
         try {
             Statement st=this.connect().createStatement();
@@ -56,8 +64,9 @@ public class hastaDao extends DbConnection{
             Statement st=this.connect().createStatement();
             ResultSet rs= st.executeQuery("select *from hasta order by adresNo asc");
             while(rs.next()){
+                adresler a=this.getaDao().getById(rs.getInt(6));
                 hasta h=new hasta(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), 
-                        rs.getLong(5), rs.getInt(6));
+                        rs.getLong(5), a);
                 aList.add(h);              
             }
         } catch (SQLException ex) {

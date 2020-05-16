@@ -1,28 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entity;
 
-/**
- *
- * @author hanifi
- */
 public class firma {
 
     private long firmaId;
     private String firmaAdi;
-    private long adresNo;
+    private adresler adresEntity;
     private long telefon;
 
     public firma() {
     }
 
-    public firma(long firmaId, String firmaAdi, long adresNo, long telefon) {
+    public firma(long firmaId, String firmaAdi, adresler adresEntity, long telefon) {
         this.firmaId = firmaId;
         this.firmaAdi = firmaAdi;
-        this.adresNo = adresNo;
+        this.adresEntity = adresEntity;
         this.telefon = telefon;
     }
 
@@ -42,14 +34,14 @@ public class firma {
         this.firmaAdi = firmaAdi;
     }
 
-    public long getAdresNo() {
-        return adresNo;
+    public adresler getAdresEntity() {
+        return adresEntity;
     }
 
-    public void setAdresNo(long adresNo) {
-        this.adresNo = adresNo;
+    public void setAdresEntity(adresler adresEntity) {
+        this.adresEntity = adresEntity;
     }
-
+    
     public long getTelefon() {
         return telefon;
     }

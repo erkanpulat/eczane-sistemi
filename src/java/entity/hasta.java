@@ -3,22 +3,22 @@ package entity;
 
 public class hasta extends kisi {
 
-    private int adresNo;
+    private adresler adresEntity;
 
     public hasta() {
     }
 
-    public hasta(long tcNo, String adSoyad, String dogumTarihi, String cinsiyet, long telefon, int adresNo ) {
+    public hasta(long tcNo, String adSoyad, String dogumTarihi, String cinsiyet, long telefon, adresler adresEntity ) {
         super(tcNo, adSoyad, dogumTarihi, cinsiyet, telefon);
-        this.adresNo = adresNo;
+        this.adresEntity = adresEntity;
     }
 
-    public int getAdresNo() {
-        return adresNo;
+    public adresler getAdresEntity() {
+        return adresEntity;
     }
 
-    public void setAdresNo(int adresNo) {
-        this.adresNo = adresNo;
+    public void setAdresEntity(adresler adresEntity) {
+        this.adresEntity = adresEntity;
     }
     
 }

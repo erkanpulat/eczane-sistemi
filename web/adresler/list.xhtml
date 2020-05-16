@@ -15,34 +15,14 @@
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{adreslerBean.read}" var="a">
-
                 <h:column >
                     <f:facet name="header">ADRES-NO</f:facet>
-                    #{a.adresNo}                  
+                        #{a.adresNo}                  
                 </h:column>
+                
                 <h:column>
-                    <f:facet name="header">SEHIR</f:facet>
-                        #{a.sehir}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ILCE</f:facet>
-                        #{a.ilce}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">MAHALLE</f:facet>
-                        #{a.mahalle}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">SOKAK-CADDE</f:facet>
-                        #{a.sokakCadde}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">BİNA-NO</f:facet>
-                        #{a.binaNo}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">KAPI-NO</f:facet>
-                        #{a.kapiNo}
+                    <f:facet name="header">ADRES</f:facet>
+                        #{a.adres}
                 </h:column>
 
                 <h:column>

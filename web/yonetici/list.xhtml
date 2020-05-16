@@ -8,25 +8,6 @@
 
 
     <ui:define name="content">
-        <style>
-            .popup-panel-overlay{
-                background-color: rgba(0,0,0,0.5);
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-            }
-            .popup-panel{
-                margin: 100px;
-                background-color: white;
-                padding: 20px;
-                border-radius: 5px;
-                border: 1px solid #DDD;
-            }
-        </style>
-        
-        
 
         <h:form id="form">
             <br/>
@@ -66,17 +47,7 @@
                 
                 <h:column>
                     <f:facet name="header">ADRES-NO</f:facet>
-                    <h:commandLink value="#{a.adresNo} (Detaylı Gör)" action="#{adreslerBean.show(a.adresNo)}"> 
-                        <f:ajax render="@form"/>
-                    </h:commandLink>            
-                    <h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{adreslerBean.showPopup}">
-                        <div class="popup-panel">
-                            #{adreslerBean.adresBilgisiGoster(adreslerBean.no)} <br/><br/>
-                            <h:commandButton styleClass="btn btn-info" value="Kapat" action="#{adreslerBean.hide()}">
-                                <f:ajax render="@form"/>
-                            </h:commandButton>
-                        </div>
-                    </h:panelGroup>
+                        #{a.adresEntity.adres}
                 </h:column>
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>

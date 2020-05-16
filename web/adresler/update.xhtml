@@ -8,30 +8,10 @@
 
     <ui:define name="content">
         <h:form>
-            <div class="form-group row">
-                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Şehir</label>
+            <div class="form-group row">            
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Adres</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.sehir}" /><br/> 
-                </div>
-                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">İlçe</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.ilce}" /><br/> 
-                </div>
-                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Mahalle</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.mahalle}" /><br/> 
-                </div>
-                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Sokak-Cadde</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.sokakCadde}" /><br/> 
-                </div>
-                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Bina No</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.binaNo}" /><br/>
-                </div>
-                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Kapı No</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.kapiNo}" /><br/> 
+                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.adres}" /><br/> 
                 </div>
                 <div class="col-sm-9">
                     <h:commandButton styleClass="btn btn-warning" style="margin:10px 0px 15px 15px;" action="#{adreslerBean.update()}" value="Güncelle"/>

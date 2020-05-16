@@ -1,29 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entity;
 
-/**
- *
- * @author hanifi
- */
 public class personel extends kisi{
     private String departman;
     private float maas;
-    private int adresNo;
+    private adresler adresEntity;
 
-    public personel(String departman, float maas, int adresNo) {
+    public personel(String departman, float maas, adresler adresEntity) {
         this.departman = departman;
         this.maas = maas;
-        this.adresNo = adresNo;
+        this.adresEntity=adresEntity;
     }
 
     public personel() {
     }
-    
-    
 
     public String getDepartman() {
         return departman;
@@ -41,13 +31,12 @@ public class personel extends kisi{
         this.maas = maas;
     }
 
-    public int getAdresNo() {
-        return  adresNo;
+    public adresler getAdresEntity() {
+        return adresEntity;
     }
 
-    public void setAdresNo(int adresNo) {
-        this.adresNo = adresNo;
-    }
-    
+    public void setAdresEntity(adresler adresEntity) {
+        this.adresEntity = adresEntity;
+    } 
     
 }

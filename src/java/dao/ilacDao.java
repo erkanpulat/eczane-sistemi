@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dao;
 
 import entity.firma;
@@ -14,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import util.DbConnection;
 
-/**
- *
- * @author user
- */
 public class ilacDao extends DbConnection{
     
     private firmaDao fDao;
