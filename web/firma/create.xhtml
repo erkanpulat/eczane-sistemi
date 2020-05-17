@@ -22,7 +22,10 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Telefon No</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{firmaBean.entity.telefon}" />
+                    <h:inputText id="inputTel" a:placeholder="Başında 0 olmadan giriniz.(5554443322 gibi)" style="margin-top: 10px;" class="form-control" value="#{firmaBean.entity.telefon}" validatorMessage="Telefon No Geçersiz">
+                        <f:validateLength minimum = "10" maximum = "10" />
+                    </h:inputText>
+                    <h:message for="inputTel" style="color: red;"/>
                 </div>               
                 <br/>
                 <div class="col-sm-9">

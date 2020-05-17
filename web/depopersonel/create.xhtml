@@ -12,23 +12,38 @@
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">TC No</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.tcNo}" /> 
+                    <h:inputText id="inputTc" style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.tcNo}" validatorMessage="Tc No 11 Haneli Olmalıdır">
+                        <f:validateLength minimum = "11" maximum = "11" />
+                    </h:inputText>
+                    <h:message for="inputTc" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;" >Ad Soyad</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{depoPersonelBean.entity.adSoyad}" />
+                    <h:inputText id="inputAdSoyad" style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{depoPersonelBean.entity.adSoyad}" validatorMessage="Ad Soyad Geçerli Değil">
+                         <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                    </h:inputText>
+                     <h:message for="inputAdSoyad" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Doğum Tarihi</label>
                 <div class="col-sm-9">
-                    <h:inputText a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.dogumTarihi}" />
+                    <h:inputText id="inputDt" a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.dogumTarihi}" validatorMessage="Tarih Formatı Geçersiz">
+                         <f:validateRegex pattern="^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$"/>
+                    </h:inputText>
+                    <h:message for="inputDt" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Cinsiyet</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.cinsiyet}" />
+                    <h:inputText id="inputCinsiyet" style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.cinsiyet}" validatorMessage="Cinsiyet Geçerli Değil" >
+                            <f:validateRegex pattern="^[A-Za-z]+$"/>
+                    </h:inputText>
+                  <h:message for="inputCinsiyet" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Telefon No</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.telefon}" />
+                 <div class="col-sm-9">
+                    <h:inputText a:placeholder="Başında 0 olmadan giriniz.(5554443322 gibi)" style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.telefon}" id="inputTel" validatorMessage="Telefon No Geçersiz">
+                         <f:validateLength minimum = "10" maximum = "10" />
+                    </h:inputText>
+                    <h:message for="inputTel" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Departman</label>
                 <div class="col-sm-9">
@@ -46,7 +61,7 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Şifre</label>
                 <div class="col-sm-9">
-                    <h:inputSecret style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.sifre}" />
+                    <h:inputSecret style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.sifre}"/>
                 </div>
                 <br/>
                 <div class="col-sm-9">

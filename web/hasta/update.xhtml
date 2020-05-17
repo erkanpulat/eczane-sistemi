@@ -11,7 +11,10 @@
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Telefon</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{hastaBean.entity.telefon}" /><br/> 
+                    <h:inputText id="inputTel" style="margin-top: 10px;" class="form-control" value="#{hastaBean.entity.telefon}" validatorMessage="Telefon No Geçersiz">
+                        <f:validateLength minimum = "10" maximum = "10" />
+                    </h:inputText>
+                    <h:message for="inputTel" style="color: red;"/>
                 </div>
                 <label class="col-sm-2 col-form-label" style="margin:10px 0px 15px 15px;">Adres</label>
                 <div class="col-sm-9">

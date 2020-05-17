@@ -17,7 +17,10 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;" >İlaç Adı</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{ilacBean.entity.ilacAdi}" />
+                    <h:inputText id="inputİlacAdi" style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{ilacBean.entity.ilacAdi}" validatorMessage="İlac Adi Geçerli Değil" >
+                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                    </h:inputText>
+                    <h:message for="inputİlacAdi" style="color: red;"/>      
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Fiyat</label>
                 <div class="col-sm-9">
@@ -29,11 +32,17 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretim Tarihi</label>
                 <div class="col-sm-9">
-                    <h:inputText a:placeholder="GG/AA/YYYY formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.uretimTarihi}" />
+                   <h:inputText id="inputUt" a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.uretimTarihi}" validatorMessage="Tarih Formatı Geçerli Değil">
+                         <f:validateRegex pattern="^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$"/>
+                    </h:inputText>
+                    <h:message for="inputUt" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Son Kullanma Tarihi</label>
                 <div class="col-sm-9">
-                    <h:inputText a:placeholder="GG/AA/YYYY formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.sonKullanmaTarihi}" />
+                    <h:inputText id="inputSt" a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.sonKullanmaTarihi}" validatorMessage="Tarih Formatı Geçerli Değil">
+                          <f:validateRegex pattern="^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$"/>
+                    </h:inputText>
+                    <h:message for="inputSt" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretici Firma</label>
                 <div class="col-sm-9">
