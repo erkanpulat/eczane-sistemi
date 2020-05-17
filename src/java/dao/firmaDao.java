@@ -64,7 +64,6 @@ public class firmaDao extends DbConnection {
     public void update(firma a) {
         String query = "update firma set firmaAdi='" + a.getFirmaAdi() + "', adresNo=" + a.getAdresEntity().getAdresNo() + ",telefon=" + a.getTelefon()
                 + " where firmaId=" + a.getFirmaId();
-        System.out.println("******************\n" + query);
         try {
             Statement st = this.connect().createStatement();
             st.executeUpdate(query);

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/template/admin.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <ui:define name="content">
+
+        <h:form >
+            <br/>
+            <h:commandButton style="margin:0 15px 0 15px" styleClass="btn btn-secondary" action="/satis/create" value="Satış Oluştur" />
+            <h:commandLink style="margin-right: 25px" class="btn btn-info" value="Hastaya Özel Listeleme Sayfasına Git" action="/satis/list2"/>
+            <br/>
+            <hr/>
+            <h:dataTable  class="table" value="#{satisBean.read}" var="a">
+                <h:column >
+                    <f:facet name="header">SATIŞ ID</f:facet>
+                        #{a.satisId}
+                </h:column>
+                <h:column >
+                    <f:facet name="header">TC NO</f:facet>
+                        #{a.tcNo}
+                </h:column>
+                <h:column >
+                    <f:facet name="header">İLAÇ ADI</f:facet>
+                        #{a.ilacEntity.ilacAdi}
+                </h:column>
+                <h:column >
+                    <f:facet name="header">SATIŞ TARİHİ</f:facet>
+                        #{a.satisTarih}
+                </h:column>               
+                <h:column >
+                    <f:facet name="header">İŞLEMLER</f:facet>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{satisBean.updateForm(a)}" value="Güncelle"/>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.delete(a)}" value="Sil"/>                   
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </ui:define>  
+</ui:composition>
+

@@ -79,7 +79,37 @@ public class ilac {
         this.firma = firma;
     }
 
-  
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + (int) (this.barkodNo ^ (this.barkodNo >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ilac other = (ilac) obj;
+        if (this.barkodNo != other.barkodNo) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ilac{" + "barkodNo=" + barkodNo + ", ilacAdi=" + ilacAdi + ", fiyat=" + fiyat + ", adet=" + adet + ", uretimTarihi=" + uretimTarihi + ", sonKullanmaTarihi=" + sonKullanmaTarihi + ", firma=" + firma + '}';
+    }
+
+    
     
     
 

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"               
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/admin.xhtml">
+
+    <ui:define name="content">     
+        <h:form>
+            <br/>
+            <br/>  
+            <hr style="width:50%" />
+            <br/>
+            <div style="margin:20px 20px 20px 50px;" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" >Hasta TC No</label>
+                </div>
+                <h:selectOneMenu  class="custom-select, w-25 p-2" value="#{satisBean.entity.tcNo}">
+                    <f:selectItems class="form-control" value="#{hastaBean.read}" var="a" itemLabel="#{a.tcNo}" itemValue="#{a.tcNo}" />
+                </h:selectOneMenu>
+
+                <div style="margin-left:50px" class="input-group-prepend">
+                    <label class="input-group-text" >İlaç</label>
+                </div>
+                <h:selectOneMenu style="margin-right: 55px" class="custom-select, w-25 p-2" value="#{satisBean.entity.ilacEntity}" converter="ilacConverter">
+                    <f:selectItems class="form-control" value="#{ilacBean.read}" var="a" itemLabel="#{a.ilacAdi}" itemValue="#{a}" />
+                </h:selectOneMenu>
+
+                <h:commandButton style="margin:10px;" class="btn btn-success" value="Onayla" action="#{satisBean.create()}"/>
+            </div>
+            <br/>
+
+            <hr style="width:50%" />
+ 
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+

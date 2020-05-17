@@ -18,7 +18,8 @@
                     <h:selectOneMenu style="margin-top: 10px;" value="#{hastaBean.entity.adresEntity}" converter="adresConverter" >
                         <f:selectItems class="form-control" value="#{adreslerBean.read}" var="a" itemLabel="#{a.adres}" itemValue="#{a}" />
                     </h:selectOneMenu>         
-                </div>              
+                </div>    
+                
                 <div class="col-sm-9">
                     <h:commandButton styleClass="btn btn-warning" style="margin:10px 0px 15px 15px;" action="#{hastaBean.update()}" value="Güncelle"/>
                 </div>
