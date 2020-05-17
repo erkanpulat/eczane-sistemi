@@ -8,7 +8,7 @@
                 template="/template/admin.xhtml">
 
     <ui:define name="content">     
-        <h:form>
+        <h:form id="yonetici-form">
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">TC No</label>
                 <div class="col-sm-9">
@@ -30,11 +30,11 @@
                 <div class="col-sm-9">
                     <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.telefon}" />
                 </div>
-                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Departman</label>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Departman</label>
                 <div class="col-sm-9">
                     <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.departman}" />
                 </div>
-                  <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Maas</label>
+                <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Maas</label>
                 <div class="col-sm-9">
                     <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.maas}" />
                 </div>
@@ -50,7 +50,10 @@
                 </div>
                 <br/>
                 <div class="col-sm-9">
-                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{yoneticiBean.create()}" value="Oluştur"/>
+                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{yoneticiBean.create()}" value="Oluştur">
+                        <f:ajax execute="yonetici-form" render="yonetici-form yonetici-table" />
+
+                    </h:commandButton>
                 </div>
             </div>
 

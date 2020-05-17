@@ -9,9 +9,12 @@
 
     <ui:define name="content">
 
-        <h:form >
+        <h:form id="satis-table">
             <br/>
-            <h:commandButton style="margin:0 15px 0 15px" styleClass="btn btn-secondary" action="/satis/create" value="Satış Oluştur" />
+            <h:commandButton style="margin:0 15px 0 15px" styleClass="btn btn-secondary" action="/satis/create" value="Satış Oluştur" >
+                <f:ajax execute="satis-form" render="satis-form satis-table" />
+
+            </h:commandButton>
             <h:commandLink style="margin-right: 25px" class="btn btn-info" value="Hastaya Özel Listeleme Sayfasına Git" action="/satis/list2"/>
             <br/>
             <hr/>
@@ -34,8 +37,14 @@
                 </h:column>               
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{satisBean.updateForm(a)}" value="Güncelle"/>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.delete(a)}" value="Sil"/>                   
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{satisBean.updateForm(a)}" value="Güncelle">
+                        <f:ajax execute="satis-form" render="satis-form satis-table" />
+
+                    </h:commandButton>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.delete(a)}" value="Sil">   
+                        <f:ajax execute="satis-form" render="satis-form satis-table" />
+
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
 

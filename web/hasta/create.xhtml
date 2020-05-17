@@ -8,7 +8,7 @@
                 template="/template/admin.xhtml">
 
     <ui:define name="content">     
-        <h:form>
+        <h:form id="hasta-form">
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">TC No</label>
                 <div class="col-sm-9">
@@ -38,7 +38,10 @@
                 </div>
                 <br/>
                 <div class="col-sm-9">
-                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{hastaBean.create()}" value="Oluştur"/>
+                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{hastaBean.create()}" value="Oluştur">
+                        <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
+
+                    </h:commandButton>
                 </div>
             </div>
 

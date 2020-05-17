@@ -8,8 +8,9 @@
                 template="/template/admin.xhtml">
 
     <ui:define name="content">     
-        <h:form>
-          
+        <h:form id="ilac-form">
+
+
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">BarkodNo</label>
                 <div class="col-sm-9">
@@ -28,24 +29,27 @@
                     <h:inputText style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.adet}" />
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretim Tarihi</label>
-               <div class="col-sm-9">
-                   <h:inputText a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.uretimTarihi}" />
+                <div class="col-sm-9">
+                    <h:inputText a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.uretimTarihi}" />
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Son Kullanma Tarihi</label>
                 <div class="col-sm-9">
                     <h:inputText a:placeholder="YYYY-AA-GG formatında giriniz." style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.sonKullanmaTarihi}" />
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretici Firma</label>
-                 <div class="col-sm-9">
-                     <h:selectOneMenu style="margin-top: 10px;" value="#{ilacBean.entity.firma}" converter="firmaConverter" >
+                <div class="col-sm-9">
+                    <h:selectOneMenu style="margin-top: 10px;" value="#{ilacBean.entity.firma}" converter="firmaConverter" >
                         <f:selectItems class="form-control" value="#{firmaBean.read}" var="f" itemLabel="#{f.firmaAdi}" itemValue="#{f}"/>
                     </h:selectOneMenu>         
                 </div>
                 <br/>
                 <div class="col-sm-9">
-                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{ilacBean.create()}" value="Oluştur"/>
+                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{ilacBean.create()}" value="Oluştur">
+                        <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
+
+                    </h:commandButton>
                 </div>
-              
+
             </div>
 
         </h:form>

@@ -7,9 +7,12 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:define name="content">
-        <h:form>
+        <h:form id="ilac-table">
             <br/>
-            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/ilac/create" value="İlaç Ekle" />
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/ilac/create" value="İlaç Ekle" >
+                <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
+
+            </h:commandButton>
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{ilacBean.read}" var="a">
@@ -38,15 +41,21 @@
                     <f:facet name="header">SONKULLANMA TARİHİ</f:facet>
                         #{a.sonKullanmaTarihi}
                 </h:column>
-                 <h:column>
+                <h:column>
                     <f:facet name="header">ÜRETİCİ FİRMA</f:facet>
-                          #{a.firma.firmaAdi}
+                        #{a.firma.firmaAdi}
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">İŞLEMLER</f:facet>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{ilacBean.updateForm(a)}" value="Güncelle"/>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{ilacBean.delete(a)}" value="Sil"/>
+                     <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{ilacBean.updateForm(a)}" value="Güncelle">
+                    <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
+                                
+                    </h:commandButton>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{ilacBean.delete(a)}" value="Sil">
+                    <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
+                                
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>

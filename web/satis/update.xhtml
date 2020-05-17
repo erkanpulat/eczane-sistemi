@@ -7,7 +7,7 @@
                 template="/template/admin.xhtml" >
 
     <ui:define name="content">
-        <h:form>
+        <h:form id="satis-form">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" style="margin:10px 0px 15px 15px;">TC NO</label>
                 <div class="col-sm-9">
@@ -22,7 +22,10 @@
                     </h:selectOneMenu>  
                 </div>
                 <div class="col-sm-9">
-                    <h:commandButton styleClass="btn btn-warning" style="margin:10px 0px 15px 15px;" action="#{satisBean.update()}" value="Güncelle"/>
+                    <h:commandButton styleClass="btn btn-warning" style="margin:10px 0px 15px 15px;" action="#{satisBean.update()}" value="Güncelle">
+                        <f:ajax execute="satis-form" render="satis-form satis-table" />
+
+                    </h:commandButton>
                 </div>
             </div>
         </h:form>

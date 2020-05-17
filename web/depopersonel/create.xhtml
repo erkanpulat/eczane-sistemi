@@ -8,7 +8,7 @@
                 template="/template/admin.xhtml">
 
     <ui:define name="content">     
-        <h:form>
+        <h:form id="depopersonel-form">
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">TC No</label>
                 <div class="col-sm-9">
@@ -50,7 +50,10 @@
                 </div>
                 <br/>
                 <div class="col-sm-9">
-                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{depoPersonelBean.create()}" value="Oluştur"/>
+                    <h:commandButton style="margin:10px 0px 15px 15px;" styleClass="btn btn-primary" action="#{depoPersonelBean.create()}" value="Oluştur">
+                        <f:ajax execute="depopersonel-form" render="depopersonel-form depopersonel-table" />
+
+                    </h:commandButton>
                 </div>
             </div>
 

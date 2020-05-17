@@ -9,9 +9,12 @@
 
     <ui:define name="content">
 
-        <h:form id="form">
+        <h:form id="depopersonel-table">
             <br/>
-            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/depopersonel/create" value="Depo Personel Oluştur" />
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/depopersonel/create" value="Depo Personel Oluştur" >
+                <f:ajax execute="depopersonel-form" render="depopersonel-form depopersonel-table" />
+
+            </h:commandButton>
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{depoPersonelBean.read}" var="a">
@@ -48,12 +51,18 @@
                 <h:column>
                     <f:facet name="header">ADRES-NO</f:facet>
                         #{a.adresEntity.adres}
-                    
+
                 </h:column>
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{depoPersonelBean.updateForm(a)}" value="Güncelle"/>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{depoPersonelBean.delete(a)}" value="Sil"/>                   
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{depoPersonelBean.updateForm(a)}" value="Güncelle">
+                        <f:ajax execute="depopersonel-form" render="depopersonel-form depopersonel-table" />
+
+                    </h:commandButton>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{depoPersonelBean.delete(a)}" value="Sil"> 
+                        <f:ajax execute="depopersonel-form" render="depopersonel-form depopersonel-table" />
+
+                    </h:commandButton>    
                 </h:column>
             </h:dataTable>
 

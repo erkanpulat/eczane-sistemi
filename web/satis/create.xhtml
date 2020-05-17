@@ -7,7 +7,7 @@
                 template="/template/admin.xhtml">
 
     <ui:define name="content">     
-        <h:form>
+        <h:form id="satis-form">
             <br/>
             <br/>  
             <hr style="width:50%" />
@@ -27,12 +27,15 @@
                     <f:selectItems class="form-control" value="#{ilacBean.read}" var="a" itemLabel="#{a.ilacAdi}" itemValue="#{a}" />
                 </h:selectOneMenu>
 
-                <h:commandButton style="margin:10px;" class="btn btn-success" value="Onayla" action="#{satisBean.create()}"/>
+                <h:commandButton style="margin:10px;" class="btn btn-success" value="Onayla" action="#{satisBean.create()}">
+                    <f:ajax execute="satis-form" render="satis-form satis-table" />
+
+                </h:commandButton>
             </div>
             <br/>
 
             <hr style="width:50%" />
- 
+
 
         </h:form>
     </ui:define>

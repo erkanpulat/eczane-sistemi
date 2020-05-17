@@ -8,10 +8,13 @@
 
 
     <ui:define name="content">
- 
-        <h:form >
+
+        <h:form id="hasta-table" >
             <br/>
-            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/hasta/create" value="Hasta Oluştur" />
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/hasta/create" value="Hasta Oluştur" >
+                <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
+
+            </h:commandButton>
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{hastaBean.read}" var="a">
@@ -39,12 +42,18 @@
                 <h:column>
                     <f:facet name="header">ADRES</f:facet>
                         #{a.adresEntity.adres}
-                                                 
+
                 </h:column>
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{hastaBean.updateForm(a)}" value="Güncelle"/>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{hastaBean.delete(a)}" value="Sil"/>                   
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{hastaBean.updateForm(a)}" value="Güncelle">
+                        <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
+
+                    </h:commandButton>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{hastaBean.delete(a)}" value="Sil">     
+                        <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
+
+                    </h:commandButton>                 
                 </h:column>
             </h:dataTable>
 

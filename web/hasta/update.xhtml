@@ -7,7 +7,7 @@
                 template="/template/admin.xhtml" >
 
     <ui:define name="content">
-        <h:form>
+        <h:form id="hasta-form">
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Telefon</label>
                 <div class="col-sm-9">
@@ -19,9 +19,12 @@
                         <f:selectItems class="form-control" value="#{adreslerBean.read}" var="a" itemLabel="#{a.adres}" itemValue="#{a}" />
                     </h:selectOneMenu>         
                 </div>    
-                
+
                 <div class="col-sm-9">
-                    <h:commandButton styleClass="btn btn-warning" style="margin:10px 0px 15px 15px;" action="#{hastaBean.update()}" value="Güncelle"/>
+                    <h:commandButton styleClass="btn btn-warning" style="margin:10px 0px 15px 15px;" action="#{hastaBean.update()}" value="Güncelle">
+                        <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
+
+                    </h:commandButton>
                 </div>
             </div>
         </h:form>

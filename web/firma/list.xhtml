@@ -8,10 +8,14 @@
 
 
     <ui:define name="content">
-       
-        <h:form id="form">
+
+        <h:form id="firma-table">
             <br/>
-            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/firma/create" value="Firma Oluştur" />
+
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/firma/create" value="Firma Oluştur" >
+                <f:ajax execute="firma-form" render="firma-form firma-table" />
+
+            </h:commandButton>
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{firmaBean.read}" var="a">
@@ -24,8 +28,8 @@
                     <f:facet name="header">Firma Adı</f:facet>
                         #{a.firmaAdi}
                 </h:column>
-               
-                 <h:column>
+
+                <h:column>
                     <f:facet name="header">ADRES</f:facet>
                         #{a.adresEntity.adres}                             
                 </h:column>
@@ -33,11 +37,17 @@
                     <f:facet name="header">TELEFON</f:facet>
                         #{a.telefon}
                 </h:column>
-               
+
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{firmaBean.updateForm(a)}" value="Güncelle"/>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{firmaBean.delete(a)}" value="Sil"/>                   
+                  <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{firmaBean.updateForm(a)}" value="Güncelle">
+                    <f:ajax execute="firma-form" render="firma-form firma-table" />
+                                
+                    </h:commandButton>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{firmaBean.delete(a)}" value="Sil">  
+                    <f:ajax execute="firma-form" render="firma-form firma-table" />
+                                
+                    </h:commandButton>                
                 </h:column>
             </h:dataTable>
 

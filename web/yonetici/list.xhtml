@@ -9,9 +9,12 @@
 
     <ui:define name="content">
 
-        <h:form id="form">
+        <h:form id="yonetici-table">
             <br/>
-            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/yonetici/create" value="Yonetici Oluştur" />
+            <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/yonetici/create" value="Yonetici Oluştur" >
+                <f:ajax execute="yonetici-form" render="yonetici-form yonetici-table" />
+
+            </h:commandButton>
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{yoneticiBean.read}" var="a">
@@ -36,23 +39,29 @@
                     <f:facet name="header">TELEFON</f:facet>
                         #{a.telefon}
                 </h:column>
-                 <h:column>
+                <h:column>
                     <f:facet name="header">DEPARTMAN</f:facet>
                         #{a.departman}
                 </h:column>
-                 <h:column>
+                <h:column>
                     <f:facet name="header">MAAS</f:facet>
                         #{a.maas}
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">ADRES-NO</f:facet>
                         #{a.adresEntity.adres}
                 </h:column>
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{yoneticiBean.updateForm(a)}" value="Güncelle"/>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{yoneticiBean.delete(a)}" value="Sil"/>                   
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{yoneticiBean.updateForm(a)}" value="Güncelle">
+                     <f:ajax execute="yonetici-form" render="yonetici-form yonetici-table" />
+                                
+                    </h:commandButton>
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{yoneticiBean.delete(a)}" value="Sil">     
+                     <f:ajax execute="yonetici-form" render="yonetici-form yonetici-table" />
+                                
+                    </h:commandButton>             
                 </h:column>
             </h:dataTable>
 
