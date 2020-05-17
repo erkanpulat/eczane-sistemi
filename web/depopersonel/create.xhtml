@@ -61,7 +61,8 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Şifre</label>
                 <div class="col-sm-9">
-                    <h:inputSecret style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.sifre}"/>
+                    <h:inputSecret id="dd" style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.sifre}" validator="#{validationBean.validate}"/>
+                    <h:message for="dd" showSummary="summary" style="color: red;" ></h:message>
                 </div>
                 <br/>
                 <div class="col-sm-9">
