@@ -19,8 +19,7 @@
                 <h:selectOneMenu  class="custom-select, w-75 p-2" value="#{satisBean.entity.tcNo}">
                     <f:selectItems class="form-control" value="#{hastaBean.read}" var="a" itemLabel="#{a.tcNo}" itemValue="#{a.tcNo}" />
                 </h:selectOneMenu>
-                <h:commandButton style="margin:10px;" class="btn btn-success" value="Onayla" >  
-                    <f:ajax execute="satis-form" render="satis-form satis-table" />
+                <h:commandButton style="margin:10px;" class="btn btn-success" value="Onayla" >                   
 
                 </h:commandButton>
             </div>
@@ -42,11 +41,11 @@
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
                     <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{satisBean.updateForm(a)}" value="Güncelle">
-                        <f:ajax execute="satis-form" render="satis-form satis-table" />
+                        
 
                     </h:commandButton>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.delete(a)}" value="Sil">  
-                        <f:ajax execute="satis-form" render="satis-form satis-table" />
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.deleteConfirm(a)}" value="Sil">  
+                        
 
                     </h:commandButton>
                 </h:column>

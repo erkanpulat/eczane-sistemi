@@ -35,8 +35,15 @@ public class yoneticiBean implements Serializable {
         return "/yonetici/list";
     }
 
-    public void delete(yonetici c) {
-        this.getyDao().delete(c);
+ 
+    public String delete() {
+        this.getyDao().delete(this.getEntity());
+        this.entity = new yonetici();
+        return "/yonetici/list";
+    }
+    public String deleteConfirm(yonetici a){
+        this.entity=a;
+        return "/yonetici/confirmDelete";
     }
 
     public List<yonetici> getRead() {

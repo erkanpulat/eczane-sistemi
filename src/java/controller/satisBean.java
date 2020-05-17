@@ -38,8 +38,15 @@ public class satisBean implements Serializable{
         return "/satis/list";
     }
 
-    public void delete(satis c) {
-        this.getaDao().delete(c);
+  
+    public String delete() {
+        this.getaDao().delete(this.getEntity());
+        this.entity = new satis();
+        return "/satis/list";
+    }
+    public String deleteConfirm(satis a){
+        this.entity=a;
+        return "/satis/confirmDelete";
     }
     
     public List<satis> getRead() {     

@@ -32,8 +32,14 @@ public class firmaBean implements Serializable {
         return "/firma/list";
     }
 
-    public void delete(firma c) {
-        this.getfDao().delete(c);
+    public String delete() {
+        this.getfDao().delete(this.getEntity());
+        this.entity = new firma();
+        return "/firma/list";
+    }
+    public String deleteConfirm(firma a){
+        this.entity=a;
+        return "/firma/confirmDelete";
     }
 
     public List<firma> getRead() {

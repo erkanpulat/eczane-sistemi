@@ -50,7 +50,7 @@
                         <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
 
                     </h:commandButton>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{hastaBean.delete(a)}" value="Sil">     
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{hastaBean.deleteConfirm(a)}" onclick="alert('Uyarı: Hasta diğer tablolarda kullanılıyor ise silme işlemi yapılmayacaktır!');" value="Sil">     
                         <f:ajax execute="hasta-form" render="hasta-form hasta-table" />
 
                     </h:commandButton>                 

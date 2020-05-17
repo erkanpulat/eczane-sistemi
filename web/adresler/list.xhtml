@@ -22,7 +22,6 @@
                     <f:facet name="header">ADRES-NO</f:facet>
                         #{a.adresNo}                  
                 </h:column>
-
                 <h:column>
                     <f:facet name="header">ADRES</f:facet>
                         #{a.adres}
@@ -34,7 +33,7 @@
                         <f:ajax execute="adres-form" render="adres-form adres-table" />
 
                     </h:commandButton>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{adreslerBean.delete(a)}" onclick="alert('Uyarı: Adres kullanılıyor ise silme işlemi yapılmayacaktır!');" value="Sil">
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{adreslerBean.deleteConfirm(a)}" onclick="alert('Uyarı: Adres diğer tablolarda kullanılıyor ise silme işlemi yapılmayacaktır!');" value="Sil">
                         <f:ajax execute="adres-form" render="adres-form adres-table" />
 
                     </h:commandButton>

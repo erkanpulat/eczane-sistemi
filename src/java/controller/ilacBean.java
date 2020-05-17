@@ -34,10 +34,16 @@ public class ilacBean implements Serializable {
         return "/ilac/list";
     }
 
-    public void delete(ilac c) {
-        this.getiDao().delete(c);
+    
+    public String delete() {
+        this.getiDao().delete(this.getEntity());
+        this.entity = new ilac();
+        return "/ilac/list";
     }
-
+    public String deleteConfirm(ilac a){
+        this.entity=a;
+        return "/ilac/confirmDelete";
+    }
    
 
     public List<ilac> getRead() {

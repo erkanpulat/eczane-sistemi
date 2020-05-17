@@ -31,8 +31,15 @@ public class depoPersonelBean implements Serializable {
         return "/depopersonel/list";
     }
 
-    public void delete(depoPersonel c) {
-        this.getdpDao().delete(c);
+    public String delete() {
+        this.getdpDao().delete(this.getEntity());
+        this.entity = new depoPersonel();
+        return "/depopersonel/list";
+    }
+    
+    public String deleteConfirm(depoPersonel a){
+        this.entity=a;
+        return "/depopersonel/confirmDelete";
     }
 
     public List<depoPersonel> getRead() {

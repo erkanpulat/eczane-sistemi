@@ -32,8 +32,15 @@ public class adreslerBean implements Serializable{
         return "/adresler/list";
     }
 
-    public void delete(adresler c) {
-        this.getaDao().delete(c);
+    public String delete() {
+        this.getaDao().delete(this.getEntity());
+        this.entity = new adresler();
+        return "/adresler/list";
+    }
+    
+    public String deleteConfirm(adresler a){
+        this.entity=a;
+        return "/adresler/confirmDelete";
     }
     
     public List<adresler> getRead() {     
