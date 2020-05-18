@@ -19,7 +19,8 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Departman</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.departman}" /><br/> 
+                    <h:inputText id="depBos" style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.departman}" validator="#{validationBean.bosMuValidate}"/>
+                    <h:message for="depBos" showSummary="summary" style="color:red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Maas</label>
                 <div class="col-sm-9">

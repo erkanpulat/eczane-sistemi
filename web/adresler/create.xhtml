@@ -11,7 +11,8 @@
             <div class="form-group row">
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Adres</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.adres}" /> 
+                    <h:inputText id="adresBos" style="margin-top: 10px;" class="form-control" value="#{adreslerBean.entity.adres}" validator="#{validationBean.bosMuValidate}" /> 
+                    <h:message for="adresBos" showSummary="summary" style="color:red;"/>
                 </div>              
                 <br/>
                 <div class="col-sm-9">

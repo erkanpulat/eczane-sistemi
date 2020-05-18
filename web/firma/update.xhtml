@@ -19,9 +19,10 @@
 
                 </div> 
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Firma Adı</label>
-                <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{firmaBean.entity.firmaAdi}" /><br/> 
-                </div>          
+               <div class="col-sm-9">
+                    <h:inputText id="fadiBos" style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{firmaBean.entity.firmaAdi}" validator="#{validationBean.bosMuValidate}" />
+                    <h:message for="fadiBos" showSummary="summary" style="color:red;"/>
+                </div>         
                 <label class="col-sm-2 col-form-label" style="margin:10px 0px 15px 15px;">Adres</label>
                 <div class="col-sm-9">
                     <h:selectOneMenu style="margin-top: 10px;" value="#{firmaBean.entity.adresEntity}" converter="adresConverter" >

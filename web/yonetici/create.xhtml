@@ -20,7 +20,7 @@
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;" >Ad Soyad</label>
                 <div class="col-sm-9">
                     <h:inputText id="inputAdSoyad" style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{yoneticiBean.entity.adSoyad}" validatorMessage="Ad Soyad Geçerli Değil">
-                            <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                            <f:validateRegex pattern="^[A-Za-zçÇğĞıİöÖşŞüÜ ]+$"/>
                     </h:inputText>
                      <h:message for="inputAdSoyad" style="color: red;"/>
                 </div>
@@ -33,7 +33,10 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Cinsiyet</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.cinsiyet}" />
+                    <h:inputText id="inputCinsiyet" style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.cinsiyet}" validatorMessage="Cinsiyet Geçerli Değil" >
+                            <f:validateRegex pattern="^[A-Za-z]+$"/>
+                    </h:inputText>
+                  <h:message for="inputCinsiyet" style="color: red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Telefon No</label>
                  <div class="col-sm-9">
@@ -44,11 +47,12 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Departman</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.departman}" />
+                    <h:inputText id="depBos" style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.departman}" validator="#{validationBean.bosMuValidate}"/>
+                    <h:message for="depBos" showSummary="summary" style="color:red;"/>
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Maas</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.maas}" />
+                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.maas}"/>
                 </div>
                 <label class="col-sm-2 col-form-label" style="margin:10px 0px 15px 15px;">Adres</label>
                 <div class="col-sm-9">
@@ -58,7 +62,7 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Şifre</label>
                 <div class="col-sm-9">
-                    <h:inputSecret id="dd" style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.sifre}" validator="#{validationBean.validate}" />
+                    <h:inputSecret id="dd" style="margin-top: 10px;" class="form-control" value="#{yoneticiBean.entity.sifre}" validator="#{validationBean.uzunlukValidate}" />
                     <h:message for="dd" showSummary="summary" style="color: red;" ></h:message>
                 </div>
                 <br/>

@@ -19,7 +19,7 @@
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;" >İlaç Adı</label>
                 <div class="col-sm-9">
                     <h:inputText id="inputİlacAdi" style="margin-top: 10px;" class="form-control" styleClass="form-control" value="#{ilacBean.entity.ilacAdi}" validatorMessage="İlac Adi Geçerli Değil" >
-                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                    <f:validateRegex pattern="^[A-Za-zçÇğĞıİöÖşŞüÜ ]+$"/>
                     </h:inputText>
                     <h:message for="inputİlacAdi" style="color: red;"/>      
                 </div>
@@ -29,7 +29,8 @@
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Adet</label>
                 <div class="col-sm-9">
-                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.adet}" />
+                    <h:inputText style="margin-top: 10px;" class="form-control" value="#{ilacBean.entity.adet}"/>
+                    
                 </div>
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Üretim Tarihi</label>
                 <div class="col-sm-9">
