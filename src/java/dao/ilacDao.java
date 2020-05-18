@@ -103,5 +103,25 @@ public class ilacDao extends DbConnection {
         }
         return aList;
     }
+    public List<ilac> readwithStok() {
+        List<ilac> aList = new ArrayList<>();
+
+        try {
+            Statement st = this.connect().createStatement();
+            ResultSet rs = st.executeQuery("select *from ilac ");
+            while (rs.next()) {
+                firma f = this.getfDao().getById(rs.getLong(7));
+                ilac h = new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f);
+                if(rs.getInt(4)>0){
+                    aList.add(h);
+                }              
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return aList;
+    }
 
 }

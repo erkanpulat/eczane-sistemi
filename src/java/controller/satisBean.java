@@ -15,11 +15,12 @@ import javax.inject.Named;
 public class satisBean implements Serializable{
     private satisDao aDao;
     private satis entity;
-
+    
     public String create() {
         this.getaDao().create(entity);
         this.entity=new satis();
-        return "/satis/list";
+        this.getEntity().setPopup(true);
+        return "/satis/create";
     }
     
     public String listForm(){

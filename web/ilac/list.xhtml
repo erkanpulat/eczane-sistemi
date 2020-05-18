@@ -31,7 +31,9 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADET</f:facet>
-                        #{a.adet}
+                    <h:outputText rendered="#{a.adet==0}" style="color: red" value="#{a.adet} - Stokta kalmadı!"/>
+                    <h:outputText rendered="#{a.adet le 5 and a.adet gt 0}" style="color: #FFA500" value="#{a.adet} - Stok bitmek üzere!"/>
+                    <h:outputText rendered="#{a.adet gt 5}" value="#{a.adet}"/>                                       
                 </h:column>
                 <h:column>
                     <f:facet name="header">ÜRETİM TARİHİ</f:facet>

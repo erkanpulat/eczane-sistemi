@@ -103,15 +103,6 @@ public class ilac {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "ilac{" + "barkodNo=" + barkodNo + ", ilacAdi=" + ilacAdi + ", fiyat=" + fiyat + ", adet=" + adet + ", uretimTarihi=" + uretimTarihi + ", sonKullanmaTarihi=" + sonKullanmaTarihi + ", firma=" + firma + '}';
-    }
-
     
-    
-    
-
     
 }

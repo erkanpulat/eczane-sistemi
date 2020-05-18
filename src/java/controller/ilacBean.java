@@ -49,6 +49,10 @@ public class ilacBean implements Serializable {
     public List<ilac> getRead() {
         return this.getiDao().read();
     }
+    
+    public List<ilac> getReadwithStok() {
+        return this.getiDao().readwithStok();
+    }
 
     public ilacDao getiDao() {
         if (this.iDao == null) {

@@ -17,6 +17,7 @@ public class satis {
     private long tcNo=0;
     private ilac ilacEntity;
     private Date satisTarih;
+    private boolean popup;
 
     public satis() {
     }
@@ -61,6 +62,14 @@ public class satis {
         this.satisTarih = satisTarih;
     }
     
+    public boolean isPopup() {
+        return popup;
+    }
+
+    public void setPopup(boolean popup) {
+        this.popup = popup;
+    }
+
     
     
 }

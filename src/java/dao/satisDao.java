@@ -26,9 +26,11 @@ public class satisDao extends DbConnection {
 
     public void create(satis a) {
         String query = "insert into satis(tcno,barkodno) VALUES(" + a.getTcNo() + "," + a.getIlacEntity().getBarkodNo() + ")";
+        String query2="update ilac set adet=adet-1 where barkodno="+a.getIlacEntity().getBarkodNo();
         try {
             Statement st = this.connect().createStatement();
             st.executeUpdate(query);
+            st.executeUpdate(query2);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -58,7 +60,7 @@ public class satisDao extends DbConnection {
 
         try {
             Statement st = this.connect().createStatement();
-            ResultSet rs = st.executeQuery("select *from satis order by satisId asc");
+            ResultSet rs = st.executeQuery("select *from satis order by satisId desc");
             while (rs.next()) {
                 ilac i = this.getiDao().getById(rs.getLong(3));
                 satis h = new satis(rs.getInt(1), rs.getLong(2), i, rs.getDate(4));
