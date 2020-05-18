@@ -34,7 +34,7 @@
                 <label class="col-sm-2  col-form-label" style="margin:10px 0px 15px 15px;">Cinsiyet</label>
                 <div class="col-sm-9">
                     <h:inputText id="inputCinsiyet" style="margin-top: 10px;" class="form-control" value="#{depoPersonelBean.entity.cinsiyet}" validatorMessage="Cinsiyet Geçerli Değil" >
-                            <f:validateRegex pattern="^[A-Za-z]+$"/>
+                            <f:validateRegex pattern="^[A-Za-zı]+$"/>
                     </h:inputText>
                   <h:message for="inputCinsiyet" style="color: red;"/>
                 </div>

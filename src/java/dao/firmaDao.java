@@ -5,7 +5,6 @@ import entity.firma;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import util.DbConnection;
@@ -52,7 +51,7 @@ public class firmaDao extends DbConnection {
         try {
             
             PreparedStatement pst = this.connect().prepareStatement("select *from firma where firmaId=?");
-            pst.setLong(1, f.getFirmaId());
+            pst.setLong(1, id);
             ResultSet rs = pst.executeQuery();
             rs.next();
             adresler a = this.getaDao().getById(rs.getInt(3));
