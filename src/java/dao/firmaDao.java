@@ -2,6 +2,7 @@ package dao;
 
 import entity.adresler;
 import entity.firma;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,24 +25,35 @@ public class firmaDao extends DbConnection {
         this.aDao = aDao;
     }
 
+    
+    
     public void create(firma a) {
 
-        String query = "insert into firma(firmaAdi,adresNo,telefon) VALUES('" + a.getFirmaAdi() + "'," + a.getAdresEntity().getAdresNo() + "," + a.getTelefon() + ")";
+        
         try {
-            Statement st = this.connect().createStatement();
-            st.executeUpdate(query);
+            PreparedStatement pst = this.connect().prepareStatement("insert into firma(firmaAdi,adresNo,telefon) VALUES(?,?,?)");
+            pst.setString(1, a.getFirmaAdi());
+            pst.setInt(2, a.getAdresEntity().getAdresNo());
+            pst.setLong(3, a.getTelefon());
+          
+            pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
+ 
+    
+    
     public firma getById(long id) {
         firma f = null;
 
-        String query = "select * from firma where firmaId=" + id;
+       
         try {
-            Statement st = this.connect().createStatement();
-            ResultSet rs = st.executeQuery(query);
+            
+            PreparedStatement pst = this.connect().prepareStatement("select *from firma where firmaId=?");
+            pst.setLong(1, f.getFirmaId());
+            ResultSet rs = pst.executeQuery();
             rs.next();
             adresler a = this.getaDao().getById(rs.getInt(3));
             f = new firma(rs.getLong(1), rs.getString(2), a, rs.getLong(4));
@@ -52,21 +64,33 @@ public class firmaDao extends DbConnection {
         return f;
     }
 
+    
+    
+    
+  
+    
     public void delete(firma a) {
         try {
-            Statement st = this.connect().createStatement();
-            st.executeUpdate("delete from firma where firmaId=" + a.getFirmaId());
+            PreparedStatement pst = this.connect().prepareStatement("delete from firma where firmaId=?" );
+           pst.setLong(1, a.getFirmaId());
+            pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
+    
+    
     public void update(firma a) {
-        String query = "update firma set firmaAdi='" + a.getFirmaAdi() + "', adresNo=" + a.getAdresEntity().getAdresNo() + ",telefon=" + a.getTelefon()
-                + " where firmaId=" + a.getFirmaId();
+      
         try {
-            Statement st = this.connect().createStatement();
-            st.executeUpdate(query);
+           PreparedStatement pst = this.connect().prepareStatement("update firma set firmaAdi=?,adresNo=?,telefon=? where firmaId=?");
+           pst.setString(1, a.getFirmaAdi());
+           pst.setInt(2, a.getAdresEntity().getAdresNo());
+            pst.setLong(3, a.getTelefon());
+            pst.setLong(4, a.getFirmaId());
+          
+            pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -76,19 +100,21 @@ public class firmaDao extends DbConnection {
         List<firma> aList = new ArrayList<>();
 
         try {
-            Statement st = this.connect().createStatement();
-            ResultSet rs = st.executeQuery("select *from firma order by firmaId asc");
+          PreparedStatement pst=this.connect().prepareStatement("select *from firma order by firmaId asc");
+            ResultSet rs= pst.executeQuery();
             while (rs.next()) {
                 adresler b = this.getaDao().getById(rs.getInt(3));
                 firma a = new firma(rs.getLong(1), rs.getString(2), b, rs.getLong(4));
                 aList.add(a);
             }
-            st.close();
+            pst.close();
             rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return aList;
     }
+    
+  
 
 }

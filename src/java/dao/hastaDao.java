@@ -1,11 +1,11 @@
-
 package dao;
 
 import entity.adresler;
 import entity.hasta;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 import util.DbConnection;
@@ -26,14 +26,17 @@ public class hastaDao extends DbConnection{
     }
     
     
-    public void create(hasta a) {
-        
-        String query = "insert into hasta"
-                + " VALUES("+a.getTcNo()+",'"+a.getAdSoyad()+"','"+a.getDogumTarihi()+"','"+
-                a.getCinsiyet()+"',"+a.getTelefon()+","+a.getAdresEntity().getAdresNo()+")";
-        try {           
-            Statement st = this.connect().createStatement();
-            st.executeUpdate(query);
+    public void create(hasta a) {  
+        try {         
+            PreparedStatement pst=this.connect().prepareStatement("insert into hasta VALUES(?,?,?,?,?,?)");
+            pst.setLong(1, a.getTcNo());
+            pst.setString(2, a.getAdSoyad());
+            pst.setString(3, a.getDogumTarihi());
+            pst.setString(4, a.getCinsiyet());
+            pst.setLong(5, a.getTelefon());
+            pst.setInt(6, a.getAdresEntity().getAdresNo());     
+            
+            pst.executeUpdate();        
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -41,35 +44,40 @@ public class hastaDao extends DbConnection{
 
     public void delete(hasta a) {
         try {
-            Statement st = this.connect().createStatement();
-            st.executeUpdate("delete from hasta where tcno=" + a.getTcNo());
+            PreparedStatement pst=this.connect().prepareStatement("delete from hasta where tcno=?");
+            pst.setLong(1, a.getTcNo());
+            pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
      public void update(hasta a){
-         String query="update hasta set telefon="+a.getTelefon()+", adresNo="+a.getAdresEntity().getAdresNo()+
-                 " where tcno="+a.getTcNo();
+        
         try {
-            Statement st=this.connect().createStatement();
-            st.executeUpdate(query);
+            PreparedStatement pst=this.connect().prepareStatement("update hasta set telefon= ? , adresNo= ?  where tcno= ?");
+            pst.setLong(1, a.getTelefon());
+            pst.setInt(2, a.getAdresEntity().getAdresNo());
+            pst.setLong(3, a.getTcNo());
+            
+            pst.executeUpdate();
+            
+            pst.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        
         }      
     }
      public List<hasta> read(){
-        List<hasta> aList = new ArrayList<>();
-        
+        List<hasta> aList = new ArrayList<>();       
         try {
-            Statement st=this.connect().createStatement();
-            ResultSet rs= st.executeQuery("select *from hasta order by adresNo asc");
+            PreparedStatement pst=this.connect().prepareStatement("select *from hasta order by adsoyad asc");
+            ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 adresler a=this.getaDao().getById(rs.getInt(6));
                 hasta h=new hasta(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), 
                         rs.getLong(5), a);
                 aList.add(h);              
             }
-            st.close();
+            pst.close();
             rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        
