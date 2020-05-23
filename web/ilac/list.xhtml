@@ -65,6 +65,14 @@
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
+            <pre> Sayfa #{ilacBean.page} / #{ilacBean.pageCount} </pre> 
+            <div style="text-align:center">
+                <pre> Sayfa #{ilacBean.page} / #{ilacBean.pageCount} </pre> 
+                <h:commandButton action="#{ilacBean.previous}" value="Önceki" styleClass="btn btn-outline-dark"/>
+                <h:commandButton  action="#{ilacBean.next()}" value="Sonraki"  styleClass="btn btn-outline-dark"/>
+
+
+            </div>
         </h:form>
     </ui:define>  
 </ui:composition>

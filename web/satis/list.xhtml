@@ -47,6 +47,14 @@
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
+             
+            <div style="text-align:center">
+                 <pre> Sayfa #{satisBean.page} / #{satisBean.pageCount} </pre> 
+                <h:commandButton action="#{satisBean.previous}" value="Önceki" styleClass="btn btn-outline-dark"/>
+                <h:commandButton  action="#{satisBean.next()}" value="Sonraki"  styleClass="btn btn-outline-dark"/>
+                
+                
+            </div>
 
         </h:form>
     </ui:define>  

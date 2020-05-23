@@ -89,12 +89,14 @@ public class ilacDao extends DbConnection {
         }
     }
 
-    public List<ilac> read() {
+    public List<ilac> read(int page, int pageSize) {
         List<ilac> aList = new ArrayList<>();
-
+        int start = (page - 1) * pageSize;
         try {
-            PreparedStatement pst=this.connect().prepareStatement("select *from ilac order by ilacadi asc");
-            ResultSet rs= pst.executeQuery();
+            PreparedStatement pst=this.connect().prepareStatement("select *from ilac order by ilacadi asc limit ? , ?");
+             pst.setInt(1, start);
+            pst.setInt(2, pageSize);
+            ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 firma f = this.getfDao().getById(rs.getLong(7));
                 ilac h = new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f,
@@ -109,6 +111,25 @@ public class ilacDao extends DbConnection {
         }
         return aList;
     }
+    
+    
+  
+    public int count() {
+        int count = 0;
+
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select  count(barkodNo) as count from ilac");
+
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return count;
+    }
+
     public List<ilac> readwithStok() {
         List<ilac> aList = new ArrayList<>();
 

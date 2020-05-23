@@ -23,6 +23,52 @@ public class ilacBean implements Serializable {
     private Part doc;
 
     private final String uploadTo = "/upload/";
+     private List<ilac> aList;
+
+    private int page = 1;
+    private int pageSize = 5;
+    private int pageCount;
+
+    public void next() {
+        if (this.page == this.getPageCount()) {
+            this.page = 1;
+        } else {
+            this.page++;
+        }
+    }
+
+    public void previous() {
+        if (this.page == 1) {
+            this.page = this.getPageCount();
+        } else {
+            this.page--;
+        }
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageCount() {
+        this.pageCount = (int) Math.ceil(this.iDao.count() / (double) pageSize);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
 
     public String create() throws IOException {
 
@@ -65,8 +111,13 @@ public class ilacBean implements Serializable {
         return "/ilac/confirmDelete";
     }
 
-    public List<ilac> getRead() {
-        return this.getiDao().read();
+     public List<ilac> getRead() {
+        this.aList = this.getiDao().read(page, pageSize);
+        return aList;
+    }
+
+    public void setaList(List<ilac> aList) {
+        this.aList = aList;
     }
 
     public List<ilac> getReadwithStok() {

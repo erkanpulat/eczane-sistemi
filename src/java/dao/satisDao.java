@@ -80,11 +80,13 @@ public class satisDao extends DbConnection {
         }
     }
 
-    public List<satis> read() {
+    public List<satis> read(int page, int pageSize) {
         List<satis> aList = new ArrayList<>();
-
+        int start = (page - 1) * pageSize;
         try {
-            PreparedStatement pst = this.connect().prepareStatement("select *from satis order by satisId desc");
+            PreparedStatement pst = this.connect().prepareStatement("select *from satis order by satisId desc limit ? , ?");
+            pst.setInt(1, start);
+            pst.setInt(2, pageSize);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 ilac i = this.getiDao().getById(rs.getLong(3));
@@ -100,6 +102,25 @@ public class satisDao extends DbConnection {
         return aList;
     }
 
+
+    public int count() {
+        int count = 0;
+
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select  count(satisid) as count from satis");
+
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return count;
+    }
+
+    
+    
     public List<satis> readWithTcNo(long tcNo) {
         List<satis> aList = new ArrayList<>();
         if (tcNo != 0) {

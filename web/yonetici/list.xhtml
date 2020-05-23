@@ -64,6 +64,14 @@
                     </h:commandButton>             
                 </h:column>
             </h:dataTable>
+           
+            <div style="text-align:center">
+                 <pre> Sayfa #{yoneticiBean.page} / #{yoneticiBean.pageCount} </pre> 
+                <h:commandButton  action="#{yoneticiBean.previous()}" value="Önceki" styleClass="btn btn-outline-dark"/>
+                <h:commandButton  action="#{yoneticiBean.next()}" value="Sonraki"  styleClass="btn btn-outline-dark"/>
+
+
+            </div>
 
         </h:form>
     </ui:define>  
