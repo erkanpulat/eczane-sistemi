@@ -9,11 +9,15 @@ public class ilac {
     private String uretimTarihi;
     private String sonKullanmaTarihi;
     private firma firma;
+    private String filePath;
+    private String fileName;
+    private String fileType;
 
     public ilac() {
     }
 
-    public ilac(long barkodNo, String ilacAdi, float fiyat, int adet, String uretimTarihi, String sonKullanmaTarihi, firma firma) {
+    public ilac(long barkodNo, String ilacAdi, float fiyat, int adet, String uretimTarihi, String sonKullanmaTarihi, firma firma, 
+            String filePath, String fileName, String fileType) {
         this.barkodNo = barkodNo;
         this.ilacAdi = ilacAdi;
         this.fiyat = fiyat;
@@ -21,7 +25,37 @@ public class ilac {
         this.uretimTarihi = uretimTarihi;
         this.sonKullanmaTarihi = sonKullanmaTarihi;
         this.firma = firma;
+        this.filePath = filePath;
+        this.fileName = fileName;
+        this.fileType = fileType;
     }
+
+  
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    
 
     public long getBarkodNo() {
         return barkodNo;
@@ -82,7 +116,7 @@ public class ilac {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + (int) (this.barkodNo ^ (this.barkodNo >>> 32));
+        hash = 11 * hash + (int) (this.barkodNo ^ (this.barkodNo >>> 32));
         return hash;
     }
 
@@ -103,6 +137,8 @@ public class ilac {
         }
         return true;
     }
+
+    
     
     
 }

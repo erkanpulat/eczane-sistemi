@@ -27,14 +27,17 @@ public class ilacDao extends DbConnection {
     public void create(ilac a) {
         
         try {
-            PreparedStatement pst=this.connect().prepareStatement("insert into ilac VALUES(?,?,?,?,?,?,?)");
+            PreparedStatement pst=this.connect().prepareStatement("insert into ilac VALUES(?,?,?,?,?,?,?,?,?,?)");
             pst.setLong(1, a.getBarkodNo());
             pst.setString(2, a.getIlacAdi());
             pst.setFloat(3, a.getFiyat());
             pst.setInt(4, a.getAdet());
             pst.setString(5, a.getUretimTarihi());
             pst.setString(6, a.getSonKullanmaTarihi()); 
-            pst.setLong(7, a.getFirma().getFirmaId());    
+            pst.setLong(7, a.getFirma().getFirmaId());  
+            pst.setString(8, a.getFilePath());
+            pst.setString(9, a.getFileName());
+            pst.setString(10, a.getFileType());
             
             pst.executeUpdate();        
         } catch (SQLException ex) {
@@ -59,7 +62,8 @@ public class ilacDao extends DbConnection {
             ResultSet rs= pst.executeQuery();
             rs.next();
             firma f = this.getfDao().getById(rs.getLong(7));
-            i=new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f);
+            i=new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5),
+                    rs.getString(6), f , rs.getString(8),rs.getString(9),rs.getString(10));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -93,7 +97,9 @@ public class ilacDao extends DbConnection {
             ResultSet rs= pst.executeQuery();
             while (rs.next()) {
                 firma f = this.getfDao().getById(rs.getLong(7));
-                ilac h = new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f);
+                ilac h = new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f,
+                rs.getString(8),rs.getString(9),rs.getString(10));
+                
                 aList.add(h);
             }
             pst.close();
@@ -111,7 +117,8 @@ public class ilacDao extends DbConnection {
             ResultSet rs= pst.executeQuery();
             while (rs.next()) {
                 firma f = this.getfDao().getById(rs.getLong(7));
-                ilac h = new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f);
+                ilac h = new ilac(rs.getLong(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getString(5), rs.getString(6), f,
+                rs.getString(8),rs.getString(9),rs.getString(10));
                 if(rs.getInt(4)>0){
                     aList.add(h);
                 }              

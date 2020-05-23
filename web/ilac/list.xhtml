@@ -10,8 +10,7 @@
         <h:form id="ilac-table">
             <br/>
             <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/ilac/create" value="İlaç Ekle" >
-                <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
-
+                <f:ajax execute="ilac-form" render="ilac-form ilac-table" />        
             </h:commandButton>
             <br/>
             <hr/>
@@ -47,16 +46,22 @@
                     <f:facet name="header">ÜRETİCİ FİRMA</f:facet>
                         #{a.firma.firmaAdi}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">İLAÇ RESMİ</f:facet>
+                    <h:column>
+                        <h:panelGroup layout="block">
+                            <h:graphicImage styleClass="img-thumbnail"  width="100" height="100" value="/file/#{a.fileName}"/>                     
+                        </h:panelGroup>
+                    </h:column>
+                </h:column>
 
                 <h:column>
                     <f:facet name="header">İŞLEMLER</f:facet>
-                     <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{ilacBean.updateForm(a)}" value="Güncelle">
-                    <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
-                                
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{ilacBean.updateForm(a)}" value="Güncelle">
+                        <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
                     </h:commandButton>
                     <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{ilacBean.deleteConfirm(a)}" onclick="alert('Uyarı: İlaç diğer tablolarda kullanılıyor ise silme işlemi yapılmayacaktır!');" value="Sil">
-                    <f:ajax execute="ilac-form" render="ilac-form ilac-table" />
-                                
+                    <f:ajax execute="ilac-form" render="ilac-form ilac-table" />                     
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
