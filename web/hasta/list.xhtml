@@ -56,6 +56,14 @@
                     </h:commandButton>                 
                 </h:column>
             </h:dataTable>
+       
+           <div style="text-align:center">
+                <pre> Sayfa #{hastaBean.page} / #{hastaBean.pageCount} </pre> 
+                <h:commandButton action="#{hastaBean.previous()}" value="Önceki" styleClass="btn btn-outline-dark"/>
+                <h:commandButton  action="#{hastaBean.next()}" value="Sonraki"  styleClass="btn btn-outline-dark"/>
+
+
+            </div>
 
         </h:form>
     </ui:define>  

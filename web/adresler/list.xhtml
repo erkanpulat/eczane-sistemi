@@ -14,7 +14,7 @@
             <h:commandButton style="margin-left: 15px" styleClass="btn btn-secondary" action="/adresler/create" value="Adres Oluştur" >
                 <f:ajax execute="adres-form" render="adres-form adres-table" />
 
-            </h:commandButton>
+            </h:commandButton>           
             <br/>
             <hr/>
             <h:dataTable  class="table" value="#{adreslerBean.read}" var="a">
@@ -39,7 +39,19 @@
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
-        </h:form>
+
+
+            
+            <div style="text-align:center">
+              <pre> Sayfa #{adreslerBean.page} / #{adreslerBean.pageCount} </pre> 
+                
+                <h:commandButton  action="#{adreslerBean.previous()}" value="Önceki"  styleClass="btn btn-outline-dark"/>
+                <h:commandButton  action="#{adreslerBean.next()}" value="Sonraki"  styleClass="btn btn-outline-dark"/>
+
+
+            </div>
+
+        </h:form>    
     </ui:define>  
 </ui:composition>
 

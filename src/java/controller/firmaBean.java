@@ -1,4 +1,3 @@
-
 package controller;
 
 import dao.firmaDao;
@@ -12,8 +11,55 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class firmaBean implements Serializable {
-     private firmaDao fDao;
+
+    private firmaDao fDao;
     private firma entity;
+    private List<firma> aList;
+
+    private int page = 1;
+    private int pageSize = 5;
+    private int pageCount;
+
+    public void next() {
+        if (this.page == this.getPageCount()) {
+            this.page = 1;
+        } else {
+            this.page++;
+        }
+    }
+
+    public void previous() {
+        if (this.page == 1) {
+            this.page = this.getPageCount();
+        } else {
+            this.page--;
+        }
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageCount() {
+        this.pageCount = (int) Math.ceil(this.fDao.count() / (double) pageSize);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
 
     public String create() {
         this.getfDao().create(entity);
@@ -37,13 +83,19 @@ public class firmaBean implements Serializable {
         this.entity = new firma();
         return "/firma/list";
     }
-    public String deleteConfirm(firma a){
-        this.entity=a;
+
+    public String deleteConfirm(firma a) {
+        this.entity = a;
         return "/firma/confirmDelete";
     }
 
     public List<firma> getRead() {
-        return this.getfDao().read();
+        this.aList = this.getfDao().read(page, pageSize);
+        return aList;
+    }
+
+    public void setaList(List<firma> aList) {
+        this.aList = aList;
     }
 
     public firmaDao getfDao() {

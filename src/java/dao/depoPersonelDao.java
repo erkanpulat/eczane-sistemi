@@ -74,12 +74,13 @@ public class depoPersonelDao extends DbConnection {
         }
     }
 
-    public List<depoPersonel> read() {
+    public List<depoPersonel> read(int page, int pageSize) {
         List<depoPersonel> aList = new ArrayList<>();
-
+        int start = (page - 1) * pageSize;
         try {
-            PreparedStatement pst = this.connect().prepareStatement("select *from depopersonel order by adsoyad asc");
-
+            PreparedStatement pst = this.connect().prepareStatement("select * from depopersonel order by adsoyad asc limit ?, ?");
+            pst.setInt(1, start);
+            pst.setInt(2, pageSize);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 adresler a = this.getaDao().getById(rs.getInt(8));
@@ -93,6 +94,22 @@ public class depoPersonelDao extends DbConnection {
             System.out.println(ex.getMessage());
         }
         return aList;
+    }
+
+    public int count() {
+        int count = 0;
+
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select  count(tcNo) as count from depopersonel");
+
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return count;
     }
 
 }

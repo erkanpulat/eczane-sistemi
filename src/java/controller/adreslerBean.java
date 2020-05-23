@@ -1,4 +1,3 @@
-
 package controller;
 
 import dao.adreslerDao;
@@ -11,9 +10,56 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 
-public class adreslerBean implements Serializable{
+public class adreslerBean implements Serializable {
+
     private adreslerDao aDao;
     private adresler entity;
+    private List<adresler> adreslerList;
+
+    private int page = 1;
+    private int pageSize = 5;
+    private int pageCount;
+
+    public void next() {
+        if (this.page == this.getPageCount()) {
+            this.page = 1;
+        } else {
+            this.page++;
+        }
+    }
+
+    public void previous() {
+        if (this.page == 1) {
+            this.page = this.getPageCount();
+        } else {
+            this.page--;
+        }
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageCount() {
+        this.pageCount = (int) Math.ceil(this.aDao.count() / (double) pageSize);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
 
     public String create() {
         this.getaDao().create(entity);
@@ -37,14 +83,19 @@ public class adreslerBean implements Serializable{
         this.entity = new adresler();
         return "/adresler/list";
     }
-    
-    public String deleteConfirm(adresler a){
-        this.entity=a;
+
+    public String deleteConfirm(adresler a) {
+        this.entity = a;
         return "/adresler/confirmDelete";
     }
-    
-    public List<adresler> getRead() {     
-        return this.getaDao().read();
+
+    public List<adresler> getRead() {
+        this.adreslerList = this.getaDao().read(page, pageSize);
+        return adreslerList;
+    }
+
+    public void setAdreslerList(List<adresler> adreslerList) {
+        this.adreslerList = adreslerList;
     }
 
     public adreslerDao getaDao() {
@@ -68,5 +119,5 @@ public class adreslerBean implements Serializable{
     public void setEntity(adresler entity) {
         this.entity = entity;
     }
-    
+
 }

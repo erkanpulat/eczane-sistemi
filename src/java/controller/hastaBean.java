@@ -1,4 +1,3 @@
-
 package controller;
 
 import dao.hastaDao;
@@ -12,8 +11,55 @@ import javax.inject.Named;
 @SessionScoped
 
 public class hastaBean implements Serializable {
-     private hastaDao hDao;
+
+    private hastaDao hDao;
     private hasta entity;
+    private List<hasta> aList;
+
+    private int page = 1;
+    private int pageSize = 5;
+    private int pageCount;
+
+    public void next() {
+        if (this.page == this.getPageCount()) {
+            this.page = 1;
+        } else {
+            this.page++;
+        }
+    }
+
+    public void previous() {
+        if (this.page == 1) {
+            this.page = this.getPageCount();
+        } else {
+            this.page--;
+        }
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageCount() {
+        this.pageCount = (int) Math.ceil(this.hDao.count() / (double) pageSize);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
 
     public String create() {
         this.gethDao().create(entity);
@@ -31,19 +77,25 @@ public class hastaBean implements Serializable {
         this.entity = new hasta();
         return "/hasta/list";
     }
-    
+
     public String delete() {
         this.gethDao().delete(this.getEntity());
         this.entity = new hasta();
         return "/hasta/list";
     }
-    public String deleteConfirm(hasta a){
-        this.entity=a;
+
+    public String deleteConfirm(hasta a) {
+        this.entity = a;
         return "/hasta/confirmDelete";
     }
 
     public List<hasta> getRead() {
-        return this.gethDao().read();
+        this.aList = this.gethDao().read(page, pageSize);
+        return aList;
+    }
+
+    public void setaList(List<hasta> aList) {
+        this.aList = aList;
     }
 
     public hastaDao gethDao() {
@@ -67,5 +119,5 @@ public class hastaBean implements Serializable {
     public void setEntity(hasta entity) {
         this.entity = entity;
     }
-  
+
 }

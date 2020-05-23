@@ -50,7 +50,14 @@
                     </h:commandButton>                
                 </h:column>
             </h:dataTable>
-
+                
+            <div style="text-align:center">
+                    <pre> Sayfa #{firmaBean.page} / #{firmaBean.pageCount} </pre> 
+                <h:commandButton action="#{firmaBean.previous()}" value="Önceki" styleClass="btn btn-outline-dark"/>
+                <h:commandButton  action="#{firmaBean.next()}" value="Sonraki"  styleClass="btn btn-outline-dark"/>
+                
+                
+                  </div>
         </h:form>
     </ui:define>  
 </ui:composition>

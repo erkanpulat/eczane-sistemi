@@ -66,10 +66,15 @@ public class hastaDao extends DbConnection {
         }
     }
 
-    public List<hasta> read() {
+   
+    
+     public List<hasta> read(int page, int pageSize) {
         List<hasta> aList = new ArrayList<>();
+        int start = (page - 1) * pageSize;
         try {
-            PreparedStatement pst = this.connect().prepareStatement("select *from hasta order by adsoyad asc");
+            PreparedStatement pst = this.connect().prepareStatement("select *from hasta order by adsoyad asc limit ? , ?");
+            pst.setInt(1, start);
+            pst.setInt(2, pageSize);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 adresler a = this.getaDao().getById(rs.getInt(6));
@@ -83,6 +88,22 @@ public class hastaDao extends DbConnection {
             System.out.println(ex.getMessage());
         }
         return aList;
+    }
+
+    public int count() {
+        int count = 0;
+
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select  count(tcNo) as count from hasta");
+
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return count;
     }
 
     public hasta getById(long tcno) {
