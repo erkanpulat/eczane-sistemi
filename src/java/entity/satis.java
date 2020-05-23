@@ -14,7 +14,7 @@ import java.sql.Date;
 public class satis {
     
     private int satisId;
-    private long tcNo=0;
+    private hasta hastaEntity;
     private ilac ilacEntity;
     private Date satisTarih;
     private boolean popup;
@@ -22,9 +22,9 @@ public class satis {
     public satis() {
     }
 
-    public satis(int satisId, long tcNo, ilac ilacEntity, Date satisTarih) {
+    public satis(int satisId, hasta hastaEntity, ilac ilacEntity, Date satisTarih) {      
         this.satisId = satisId;
-        this.tcNo = tcNo;
+        this.hastaEntity = hastaEntity;
         this.ilacEntity = ilacEntity;
         this.satisTarih = satisTarih;
     }
@@ -36,14 +36,6 @@ public class satis {
 
     public void setSatisId(int satisId) {
         this.satisId = satisId;
-    }
-
-    public long getTcNo() {
-        return tcNo;
-    }
-
-    public void setTcNo(long tcNo) {
-        this.tcNo = tcNo;
     }
 
     public ilac getIlacEntity() {
@@ -70,6 +62,15 @@ public class satis {
         this.popup = popup;
     }
 
-    
-    
+    public hasta getHastaEntity() {
+        if(this.hastaEntity==null){
+            hastaEntity=new hasta();
+        }
+        return hastaEntity;
+    }
+
+    public void setHastaEntity(hasta hastaEntity) {
+        this.hastaEntity = hastaEntity;
+    }
+
 }

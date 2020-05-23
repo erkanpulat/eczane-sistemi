@@ -16,7 +16,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" >Hasta TC No</label>
                 </div>
-                <h:selectOneMenu  class="custom-select, w-75 p-2" value="#{satisBean.entity.tcNo}">
+                <h:selectOneMenu  class="custom-select, w-75 p-2" value="#{satisBean.entity.hastaEntity.tcNo}">
                     <f:selectItems class="form-control" value="#{hastaBean.read}" var="a" itemLabel="#{a.tcNo}" itemValue="#{a.tcNo}" />
                 </h:selectOneMenu>
                 <h:commandButton style="margin:10px;" class="btn btn-success" value="Onayla" >                   
@@ -28,7 +28,7 @@
             <h:dataTable class="table" value="#{satisBean.getReadwithtcno(satisBean.entity)}"  var="a">
                 <h:column >
                     <f:facet name="header">TC NO</f:facet>
-                        #{a.tcNo}
+                        #{a.hastaEntity.tcNo}
                 </h:column>
                 <h:column >
                     <f:facet name="header">İLAÇ ADI</f:facet>
@@ -41,12 +41,8 @@
                 <h:column >
                     <f:facet name="header">İŞLEMLER</f:facet>
                     <h:commandButton style="margin: 2px" styleClass="btn btn-warning" action="#{satisBean.updateForm(a)}" value="Güncelle">
-                        
-
                     </h:commandButton>
-                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.deleteConfirm(a)}" value="Sil">  
-                        
-
+                    <h:commandButton style="margin: 2px" styleClass="btn btn-danger" action="#{satisBean.deleteConfirm(a)}" value="Sil">                      
                     </h:commandButton>
                 </h:column>
             </h:dataTable>

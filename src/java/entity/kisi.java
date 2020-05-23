@@ -3,7 +3,7 @@ package entity;
 
 public class kisi {
 
-    private long tcNo;
+    private long tcNo=0;
     private String adSoyad;
     private String dogumTarihi;
     private String cinsiyet;
@@ -62,4 +62,30 @@ public class kisi {
         this.telefon = telefon;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + (int) (this.tcNo ^ (this.tcNo >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final kisi other = (kisi) obj;
+        if (this.tcNo != other.tcNo) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

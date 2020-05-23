@@ -4,8 +4,9 @@ package entity;
 public class hasta extends kisi {
 
     private adresler adresEntity;
-
+    
     public hasta() {
+        
     }
 
     public hasta(long tcNo, String adSoyad, String dogumTarihi, String cinsiyet, long telefon, adresler adresEntity ) {
@@ -20,5 +21,16 @@ public class hasta extends kisi {
     public void setAdresEntity(adresler adresEntity) {
         this.adresEntity = adresEntity;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); 
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode(); 
+    }
+    
     
 }

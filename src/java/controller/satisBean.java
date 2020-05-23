@@ -55,7 +55,8 @@ public class satisBean implements Serializable{
     }
     
     public List<satis> getReadwithtcno(satis s) {   
-        return this.getaDao().readWithTcNo(s.getTcNo());
+        System.out.println("************"+s.getHastaEntity());
+        return this.getaDao().readWithTcNo(s.getHastaEntity().getTcNo());
     }
 
     public satisDao getaDao() {
