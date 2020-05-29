@@ -16,6 +16,7 @@ public class validationBean implements Serializable {
 
     public void uzunlukValidate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String str = value.toString();
+        
         if (str.length() < 8) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "En az 8 karakter olmalıdır.", "En az 8 karakter olmalıdır."));
         }
@@ -26,14 +27,14 @@ public class validationBean implements Serializable {
     }
 
     public void bosMuValidate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String str = value.toString();
-        if (str.isEmpty()) {
+       
+       if (value==null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Boş bırakılamaz!", "Boş bırakılamaz!"));
 
         }
     }
      public void bosMuValidate2(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        
+         
         if (value==null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Boş bırakılamaz!", "Boş bırakılamaz!"));
 

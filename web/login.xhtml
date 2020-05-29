@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:head>
@@ -112,7 +113,10 @@
        
             <h1 style="color: #4d90fe" >Yönetici Giriş</h1>
             <h:form>
-                <h:inputText a:placeholder="TC No" value="#{yoneticiLoginBean.uyeyonetici.tempTc}"  validator="#{validationBean.bosMuValidate2}"/>
+                <h:inputText  a:placeholder="TC No" value="#{yoneticiLoginBean.uyeyonetici.tempTc}"  validator="#{validationBean.bosMuValidate2}" validatorMessage="TcNo Kabul edilmedi">
+                    <f:validateRegex pattern="^[0-9]+$"/>
+                </h:inputText> 
+           
                 <h:inputSecret a:placeholder="Şifre" value="#{yoneticiLoginBean.uyeyonetici.sifre}" validator="#{validationBean.bosMuValidate}" />
                 <h:commandButton class="login-submit" value="Giriş Yap" action="#{yoneticiLoginBean.login()}"/>             
                
