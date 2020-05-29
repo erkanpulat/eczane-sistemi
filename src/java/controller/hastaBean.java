@@ -64,29 +64,29 @@ public class hastaBean implements Serializable {
     public String create() {
         this.gethDao().create(entity);
         this.entity = new hasta();
-        return "/hasta/list";
+        return "/secret/hasta/list";
     }
 
     public String updateForm(hasta c) {
         this.entity = c;
-        return "/hasta/update";
+        return "/secret/hasta/update";
     }
 
     public String update() {
         this.gethDao().update(entity);
         this.entity = new hasta();
-        return "/hasta/list";
+        return "/secret/hasta/list";
     }
 
     public String delete() {
         this.gethDao().delete(this.getEntity());
         this.entity = new hasta();
-        return "/hasta/list";
+        return "/secret/hasta/list";
     }
 
     public String deleteConfirm(hasta a) {
         this.entity = a;
-        return "/hasta/confirmDelete";
+        return "/secret/hasta/confirmDelete";
     }
 
     public List<hasta> getRead() {

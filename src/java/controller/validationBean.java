@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import javax.servlet.http.Part;
+import java.lang.Long;
 
 @Named
 @SessionScoped
@@ -35,8 +36,14 @@ public class validationBean implements Serializable {
 
     public void bosMuValidate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String str = value.toString();
-
         if (str.isEmpty()) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Boş bırakılamaz!", "Boş bırakılamaz!"));
+
+        }
+    }
+     public void bosMuValidate2(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+        
+        if (value==null) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Boş bırakılamaz!", "Boş bırakılamaz!"));
 
         }

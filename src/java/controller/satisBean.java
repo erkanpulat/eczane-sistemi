@@ -66,34 +66,34 @@ public class satisBean implements Serializable{
         this.getaDao().create(entity);
         this.entity=new satis();
         this.getEntity().setPopup(true);
-        return "/satis/create";
+        return "/secret/satis/create";
     }
     
     public String listForm(){
         this.entity=new satis();
-        return "/satis/list";
+        return "/secret/satis/list";
     }
 
     public String updateForm(satis c) {
         this.entity = c;
-        return "/satis/update";
+        return "/secret/satis/update";
     }
 
     public String update() {
         this.getaDao().update(entity);
         this.entity = new satis();
-        return "/satis/list";
+        return "/secret/satis/list";
     }
 
   
     public String delete() {
         this.getaDao().delete(this.getEntity());
         this.entity = new satis();
-        return "/satis/list";
+        return "/secret/satis/list";
     }
     public String deleteConfirm(satis a){
         this.entity=a;
-        return "/satis/confirmDelete";
+        return "/secret/satis/confirmDelete";
     } 
     
      public List<satis> getRead() {

@@ -111,5 +111,25 @@ public class depoPersonelDao extends DbConnection {
         }
         return count;
     }
+          public depoPersonel girisYap(long tcNo,String sifre) {
+        depoPersonel tmp = null;
+        
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select * from depogiris where tcNo = ? and sifre = ?");
+            pst.setLong(1, tcNo);
+            pst.setString(2, sifre);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                tmp = new depoPersonel();
+                tmp.setTcNo(rs.getLong("tcNo"));     
+                tmp.setSifre(rs.getString("sifre"));     
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return tmp;
+    }
 
 }

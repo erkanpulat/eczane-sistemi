@@ -17,14 +17,15 @@
                     </button>           
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                         <h:commandLink styleClass="nav-item nav-link active" action="/index?faces-redirect=true" value="ECZANE YÖNETİM SİSTEMİ"/> 
-                            <h:commandLink styleClass="nav-item nav-link" action="/adresler/list?faces-redirect=true" value="Adresler" />
-                            <h:commandLink styleClass="nav-item nav-link" action="/hasta/list?faces-redirect=true" value="Hasta" />
-                            <h:commandLink styleClass="nav-item nav-link" action="/depopersonel/list?faces-redirect=true" value="Depo Personel" />
-                            <h:commandLink styleClass="nav-item nav-link" action="/firma/list?faces-redirect=true" value="Firma" />
-                            <h:commandLink styleClass="nav-item nav-link" action="/yonetici/list?faces-redirect=true" value="Yönetici" />
-                            <h:commandLink styleClass="nav-item nav-link" action="/ilac/list?faces-redirect=true" value="İlaç" />
-                            <h:commandLink styleClass="nav-item nav-link" action="/satis/list?faces-redirect=true" value="Satış" />
+                            <h:commandLink styleClass="nav-item nav-link active" action="/secret/secret.xhtml" value="ECZANE YÖNETİM SİSTEMİ"/> 
+                            <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('adresler')}" value="Adresler" />
+                            <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('hasta')}" value="Hasta" />
+                            <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('depopersonel')}" value="Depo Personel" />
+                            <h:commandLink styleClass="nav-item nav-link" action="#{navigationBean.page('firma')}" value="Firma" />
+                            <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('yonetici')}" value="Yönetici" />
+                            <h:commandLink styleClass="nav-item nav-link" action="#{navigationBean.page('ilac')}" value="İlaç" />
+                            <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('satis')}" value="Satış" />
+                           <h:commandLink styleClass="nav-item nav-link" action="/logout?faces-redirect=true" value="Çıkış"/>
                         </div>
                     </div>
                 </nav>            

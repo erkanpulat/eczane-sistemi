@@ -64,29 +64,29 @@ public class adreslerBean implements Serializable {
     public String create() {
         this.getaDao().create(entity);
         this.entity = new adresler();
-        return "/adresler/list";
+        return "/secret/adresler/list";
     }
 
     public String updateForm(adresler c) {
         this.entity = c;
-        return "/adresler/update";
+        return "/secret/adresler/update";
     }
 
     public String update() {
         this.getaDao().update(entity);
         this.entity = new adresler();
-        return "/adresler/list";
+        return "/secret/adresler/list";
     }
 
     public String delete() {
         this.getaDao().delete(this.getEntity());
         this.entity = new adresler();
-        return "/adresler/list";
+        return "/secret/adresler/list";
     }
 
     public String deleteConfirm(adresler a) {
         this.entity = a;
-        return "/adresler/confirmDelete";
+        return "/secret/adresler/confirmDelete";
     }
 
     public List<adresler> getRead() {

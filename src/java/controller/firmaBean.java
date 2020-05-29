@@ -64,29 +64,29 @@ public class firmaBean implements Serializable {
     public String create() {
         this.getfDao().create(entity);
         this.entity = new firma();
-        return "/firma/list";
+        return "/secret/firma/list";
     }
 
     public String updateForm(firma c) {
         this.entity = c;
-        return "/firma/update";
+        return "/secret/firma/update";
     }
 
     public String update() {
         this.getfDao().update(entity);
         this.entity = new firma();
-        return "/firma/list";
+        return "/secret/firma/list";
     }
 
     public String delete() {
         this.getfDao().delete(this.getEntity());
         this.entity = new firma();
-        return "/firma/list";
+        return "/secret/firma/list";
     }
 
     public String deleteConfirm(firma a) {
         this.entity = a;
-        return "/firma/confirmDelete";
+        return "/secret/firma/confirmDelete";
     }
 
     public List<firma> getRead() {

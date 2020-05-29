@@ -84,18 +84,18 @@ public class ilacBean implements Serializable {
         this.getiDao().create(this.getEntity());
 
         this.entity = new ilac();
-        return "/ilac/list";
+        return "/secret/ilac/list";
     }
 
     public String updateForm(ilac c) {
         this.entity = c;
-        return "/ilac/update";
+        return "/secret/ilac/update";
     }
 
     public String update() {
         this.getiDao().update(entity);
         this.entity = new ilac();
-        return "/ilac/list";
+        return "/secret/ilac/list";
     }
 
     public String delete() {
@@ -103,12 +103,12 @@ public class ilacBean implements Serializable {
         f.delete();
         this.getiDao().delete(this.getEntity());
         this.entity = new ilac();
-        return "/ilac/list";
+        return "/secret/ilac/list";
     }
 
     public String deleteConfirm(ilac a) {
         this.entity = a;
-        return "/ilac/confirmDelete";
+        return "/secret/ilac/confirmDelete";
     }
 
      public List<ilac> getRead() {

@@ -114,5 +114,28 @@ public class yoneticiDao extends DbConnection {
         }
         return count;
     }
+            public yonetici girisYap(long tcNo,String sifre) {
+        yonetici tmp = null;
+
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select * from yoneticigiris where tcNo = ? and sifre = ?");
+            pst.setLong(1, tcNo);
+            pst.setString(2, sifre);
+            ResultSet rs = pst.executeQuery();
+
+
+            while (rs.next()) {
+                tmp = new yonetici();
+                tmp.setTcNo(rs.getLong("tcNo"));
+                tmp.setSifre(rs.getString("sifre"));
+               
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return tmp;
+    }
 
 }
