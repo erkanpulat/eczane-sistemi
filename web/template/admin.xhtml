@@ -25,7 +25,7 @@
                             <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('yonetici')}" value="Yönetici" />
                             <h:commandLink styleClass="nav-item nav-link" action="#{navigationBean.page('ilac')}" value="İlaç" />
                             <h:commandLink styleClass="nav-item nav-link" rendered="#{yoneticiLoginBean.uyeyonetici.tcNo==sessionScope.valid_user.tcNo}" action="#{navigationBean.page('satis')}" value="Satış" />
-                           <h:commandLink styleClass="nav-item nav-link" action="/logout?faces-redirect=true" value="Çıkış"/>
+                            <h:commandLink styleClass="nav-item nav-link" action="/logout?faces-redirect=true" value="Çıkış"/>
                         </div>
                     </div>
                 </nav>            
