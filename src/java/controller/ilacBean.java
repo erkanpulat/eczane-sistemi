@@ -23,7 +23,7 @@ public class ilacBean implements Serializable {
     private Part doc;
 
     private final String uploadTo = "/upload/";
-     private List<ilac> aList;
+    private List<ilac> aList;
 
     private int page = 1;
     private int pageSize = 5;
@@ -99,9 +99,10 @@ public class ilacBean implements Serializable {
     }
 
     public String delete() {
-        File f = new File(uploadTo+this.getEntity().getFileName());        
-        f.delete();
-        this.getiDao().delete(this.getEntity());
+        if (this.getiDao().delete(this.getEntity())) {
+            File f = new File(uploadTo + this.getEntity().getFileName());
+            f.delete();
+        }
         this.entity = new ilac();
         return "/secret/ilac/list";
     }
@@ -111,7 +112,7 @@ public class ilacBean implements Serializable {
         return "/secret/ilac/confirmDelete";
     }
 
-     public List<ilac> getRead() {
+    public List<ilac> getRead() {
         this.aList = this.getiDao().read(page, pageSize);
         return aList;
     }

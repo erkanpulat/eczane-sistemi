@@ -45,14 +45,17 @@ public class ilacDao extends DbConnection {
         }
     }
 
-    public void delete(ilac a) {
+    public boolean delete(ilac a) {
         try {          
             PreparedStatement pst=this.connect().prepareStatement("delete from ilac where barkodno=?");
             pst.setLong(1, a.getBarkodNo());
             pst.executeUpdate();
-        } catch (SQLException ex) {
+        } catch (SQLException ex) {        
             System.out.println(ex.getMessage());
+            return false;
         }
+        
+        return true;
     }
     public ilac getById(long barkodno) {
         ilac i = null;
@@ -111,9 +114,7 @@ public class ilacDao extends DbConnection {
         }
         return aList;
     }
-    
-    
-  
+      
     public int count() {
         int count = 0;
 

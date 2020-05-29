@@ -93,6 +93,10 @@ public class firmaBean implements Serializable {
         this.aList = this.getfDao().read(page, pageSize);
         return aList;
     }
+    public List<firma> getRead2() {
+        this.aList = this.getfDao().read2();
+        return aList;
+    }
 
     public void setaList(List<firma> aList) {
         this.aList = aList;

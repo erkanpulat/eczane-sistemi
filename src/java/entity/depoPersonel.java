@@ -4,6 +4,8 @@ package entity;
 public class depoPersonel extends personel {
 
     private String sifre;
+    private String tempTc;
+    
     public depoPersonel() {
     }
 
@@ -15,6 +17,15 @@ public class depoPersonel extends personel {
          super.setCinsiyet(cinsiyet);
          super.setTelefon(telefon);
       
+    }
+     
+    public String getTempTc() {
+        return tempTc;
+    }
+
+    public void setTempTc(String tempTc) {
+        this.setTcNo(Long.valueOf(tempTc));
+        this.tempTc = tempTc;
     }
 
     public String getSifre() {

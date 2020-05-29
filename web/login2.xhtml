@@ -112,7 +112,7 @@
      
             <h1 style="color: #4d90fe" >Depo Personel Giriş</h1>
             <h:form>
-                <h:inputText  a:placeholder="TC No" value="#{depoLoginBean.uyeyonetici.tcNo}" validator="#{validationBean.bosMuValidate2}"/>
+                <h:inputText  a:placeholder="TC No" value="#{depoLoginBean.uyeyonetici.tempTc}" validator="#{validationBean.bosMuValidate2}"/>
                 <h:inputSecret   a:placeholder="Şifre" value="#{depoLoginBean.uyeyonetici.sifre}" validator="#{validationBean.bosMuValidate}"/>
                 <h:commandButton  class="login-submit" value="Giriş Yap" action="#{depoLoginBean.login()}"/>             
             </h:form>

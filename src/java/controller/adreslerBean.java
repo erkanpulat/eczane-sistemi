@@ -93,6 +93,10 @@ public class adreslerBean implements Serializable {
         this.adreslerList = this.getaDao().read(page, pageSize);
         return adreslerList;
     }
+    public List<adresler> getRead2() {
+        this.adreslerList = this.getaDao().read2();
+        return adreslerList;
+    }
 
     public void setAdreslerList(List<adresler> adreslerList) {
         this.adreslerList = adreslerList;

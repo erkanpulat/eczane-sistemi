@@ -93,7 +93,10 @@ public class hastaBean implements Serializable {
         this.aList = this.gethDao().read(page, pageSize);
         return aList;
     }
-
+    public List<hasta> getRead2() {
+        this.aList = this.gethDao().read2();
+        return aList;
+    }
     public void setaList(List<hasta> aList) {
         this.aList = aList;
     }

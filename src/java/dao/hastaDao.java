@@ -89,6 +89,25 @@ public class hastaDao extends DbConnection {
         }
         return aList;
     }
+     
+    public List<hasta> read2() {
+        List<hasta> aList = new ArrayList<>();
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select *from hasta order by adsoyad asc");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                adresler a = this.getaDao().getById(rs.getInt(6));
+                hasta h = new hasta(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getLong(5), a);
+                aList.add(h);
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return aList;
+    }
 
     public int count() {
         int count = 0;

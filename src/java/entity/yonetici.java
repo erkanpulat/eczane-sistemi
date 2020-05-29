@@ -4,6 +4,7 @@ package entity;
 public class yonetici extends personel {
 
     private String sifre;
+    private String tempTc;
 
     public yonetici() {
     }
@@ -18,6 +19,15 @@ public class yonetici extends personel {
 
     }
 
+    public String getTempTc() {
+        return tempTc;
+    }
+
+    public void setTempTc(String tempTc) {
+        this.setTcNo(Long.valueOf(tempTc));
+        this.tempTc = tempTc;
+    }
+   
     public String getSifre() {
         return sifre;
     }

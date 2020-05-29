@@ -102,6 +102,23 @@ public class firmaDao extends DbConnection {
         return aList;
     }
 
+    public List<firma> read2() {
+        List<firma> aList = new ArrayList<>();
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select *from firma order by firmaId asc");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                adresler b = this.getaDao().getById(rs.getInt(3));
+                firma a = new firma(rs.getLong(1), rs.getString(2), b, rs.getLong(4));
+                aList.add(a);
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return aList;
+    }
     public int count() {
         int count = 0;
 

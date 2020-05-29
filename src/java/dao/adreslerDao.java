@@ -68,7 +68,25 @@ public class adreslerDao extends DbConnection {
         }
         return adreslerList;
     }
+    
+     public List<adresler> read2() {
 
+        List<adresler> adreslerList = new ArrayList<>();       
+        try {
+            PreparedStatement pst = this.connect().prepareStatement("select * from adresler order by adresno asc");     
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                adresler a = new adresler();
+                a.setAdresNo(rs.getInt("adresNo"));
+                a.setAdres(rs.getString("adres"));
+                adreslerList.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return adreslerList;
+    }
+     
     public int count() {
         int count = 0;
 
