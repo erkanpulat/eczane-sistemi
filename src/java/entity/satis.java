@@ -18,6 +18,7 @@ public class satis {
     private ilac ilacEntity;
     private Date satisTarih;
     private boolean popup;
+    
 
     public satis() {
     }
@@ -72,5 +73,9 @@ public class satis {
     public void setHastaEntity(hasta hastaEntity) {
         this.hastaEntity = hastaEntity;
     }
+
+    
+    
+    
 
 }

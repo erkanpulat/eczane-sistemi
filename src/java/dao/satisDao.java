@@ -37,21 +37,22 @@ public class satisDao extends DbConnection {
         this.hDao = hDao;
     }
 
-    public void create(satis a) {
+    public void create(ArrayList<satis> list) {
 
-        try {
-            PreparedStatement pst = this.connect().prepareStatement("insert into satis(tcno,barkodno) VALUES(?,?)");
-            PreparedStatement pst2 = this.connect().prepareStatement("update ilac set adet=adet-1 where barkodno=?");
-            pst.setLong(1, a.getHastaEntity().getTcNo());
-            pst.setLong(2, a.getIlacEntity().getBarkodNo());
-            pst2.setLong(1, a.getIlacEntity().getBarkodNo());
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                
+                PreparedStatement pst = this.connect().prepareStatement("insert into satis(tcno,barkodno) VALUES(?,?)");
+                pst.setLong(1, list.get(i).getHastaEntity().getTcNo());
+                pst.setLong(2, list.get(i).getIlacEntity().getBarkodNo());
 
-            pst.executeUpdate();
-            pst2.executeUpdate();
+                pst.executeUpdate();
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
+
     }
 
     public void delete(satis a) {
@@ -102,7 +103,6 @@ public class satisDao extends DbConnection {
         return aList;
     }
 
-
     public int count() {
         int count = 0;
 
@@ -119,8 +119,6 @@ public class satisDao extends DbConnection {
         return count;
     }
 
-    
-    
     public List<satis> readWithTcNo(long tcNo) {
         List<satis> aList = new ArrayList<>();
         if (tcNo != 0) {
@@ -143,6 +141,36 @@ public class satisDao extends DbConnection {
             }
         }
         return aList;
+    }
+
+    public void stokDus(satis a) {
+
+        try {
+
+            PreparedStatement pst2 = this.connect().prepareStatement("update ilac set adet=adet-1 where barkodno=?");
+            pst2.setLong(1, a.getIlacEntity().getBarkodNo());
+
+            pst2.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    public void stokArttir(satis a) {
+
+        try {
+
+            PreparedStatement pst2 = this.connect().prepareStatement("update ilac set adet=adet+1 where barkodno=?");
+            pst2.setLong(1, a.getIlacEntity().getBarkodNo());
+
+            pst2.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 }
