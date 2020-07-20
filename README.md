@@ -1,4 +1,7 @@
 # eczanesistemi
+
+İNTERNET PROGRAMCILIĞI DERSİ DÖNEM PROJESİ
+
 ------------------------- YÜKLEME --------------------------
 
 1. VERİTABANI
